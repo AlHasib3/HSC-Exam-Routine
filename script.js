@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- ডেটা ও কনফিগারেশন ---
     const allExams = [
-        { subject: 'বাংলা ১ম পত্র', code: '101', date: '2025-06-26', department: 'common' },
-        { subject: 'বাংলা ২য় পত্র', code: '102', date: '2025-06-29', department: 'common' },
         { subject: 'ইংরেজি ১ম পত্র', code: '107', date: '2025-07-01', department: 'common' },
         { subject: 'ইংরেজি ২য় পত্র', code: '108', date: '2025-07-03', department: 'common' },
         { subject: 'তথ্য ও যোগাযোগ প্রযুক্তি', code: '275', date: '2025-07-07', department: 'common' },
@@ -14,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
         { subject: 'জীববিজ্ঞান ২য় পত্র', code: '179', date: '2025-07-30', department: 'science' },
         { subject: 'উচ্চতর গণিত ১ম পত্র', code: '265', date: '2025-08-04', department: 'science' },
         { subject: 'উচ্চতর গণিত ২য় পত্র', code: '266', date: '2025-08-06', department: 'science' },
+        // অন্যান্য বিভাগের সাবজেক্ট
+        { subject: 'বাংলা ১ম পত্র', code: '101', date: '2025-06-26', department: 'common' },
+        { subject: 'বাংলা ২য় পত্র', code: '102', date: '2025-06-29', department: 'common' },
         { subject: 'হিসাববিজ্ঞান ১ম পত্র', code: '253', date: '2025-07-10', department: 'business' },
         { subject: 'হিসাববিজ্ঞান ২য় পত্র', code: '254', date: '2025-07-13', department: 'business' },
         { subject: 'পৌরনীতি ও সুশাসন ১ম পত্র', code: '269', date: '2025-07-28', department: 'humanities' },
@@ -24,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- DOM এলিমেন্ট নির্বাচন ---
     const routineBody = document.getElementById('routine-body');
-    const timeDisplay = document.getElementById('time-display');
     const dateDisplay = document.getElementById('date-display');
     const menuToggle = document.getElementById('menu-toggle');
     const menuClose = document.getElementById('menu-close');
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bengaliDays = ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'];
     const bengaliMonths = ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
     
-    // --- সময় ও তারিখ আপডেট (হেডারে) ---
+    // --- সময় ও তারিখ আপডেট ---
     const updateHeaderClock = () => {
         const now = new Date();
         const hours = now.getHours();
@@ -55,14 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (hours >= 12 && hours < 17) timePeriod = "দুপুর";
         else if (hours >= 17 && hours < 19) timePeriod = "বিকাল";
 
-        const timeString = now.toLocaleTimeString('bn-BD', { hour12: true });
-        timeDisplay.textContent = `${timePeriod} ${timeString.split(' ')[1]}`;
-        
-        const dateString = `${bengaliDays[now.getDay()]}, ${toBengali(now.getDate())} ${bengaliMonths[now.getMonth()]}, ${toBengali(now.getFullYear())}`;
-        dateDisplay.textContent = dateString;
+        const timeString = now.toLocaleTimeString('bn-BD', { hour: 'numeric', minute: '2-digit' });
+        dateDisplay.textContent = `${timePeriod} ${timeString.split(' ')[0]}, ${bengaliDays[now.getDay()]}`;
     };
 
-    // --- কাউন্টডাউন গণনা ও ফরম্যাটিং ---
+    // --- কাউন্টডাউন ফাংশন (বড় স্ক্রিনের জন্য) ---
     const calculateTimeLeft = (examDate) => {
         const targetTime = new Date(`${examDate}T10:00:00`);
         const now = new Date();
@@ -71,36 +68,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if (diff <= 0) return { finished: true };
 
         diff /= 1000;
-        const seconds = Math.floor(diff % 60);
-        diff /= 60;
-        const minutes = Math.floor(diff % 60);
-        diff /= 60;
+        const seconds = Math.floor(diff % 60); diff /= 60;
+        const minutes = Math.floor(diff % 60); diff /= 60;
         const hours = Math.floor(diff % 24);
-        const totalDays = Math.floor(diff / 24);
+        const days = Math.floor(diff / 24);
         
-        let months = 0;
-        let days = totalDays;
-        if (days >= 30) {
-            months = Math.floor(days / 30);
-            days = days % 30;
-        }
-
-        return { months, days, hours, minutes, seconds, finished: false };
+        return { days, hours, minutes, seconds, finished: false };
     };
 
     const formatTimeLeft = (timeLeft) => {
         if (timeLeft.finished) return "পরীক্ষা শেষ";
-
         const pad = (num) => toBengali(String(num).padStart(2, '0'));
         let parts = [];
-        if (timeLeft.months > 0) parts.push(`${toBengali(timeLeft.months)} মাস`);
-        if (timeLeft.days > 0 || timeLeft.months > 0) parts.push(`${toBengali(timeLeft.days)} দিন`);
-        
+        if (timeLeft.days > 0) parts.push(`${toBengali(timeLeft.days)} দিন`);
         parts.push(`${pad(timeLeft.hours)}:${pad(timeLeft.minutes)}:${pad(timeLeft.seconds)}`);
         return parts.join(' ');
     };
 
-    // --- রুটিন রেন্ডার ও কাউন্টডাউন আপডেট ---
+    // --- রুটিন রেন্ডার ---
     const renderRoutine = (filter) => {
         if (countdownInterval) clearInterval(countdownInterval);
         routineBody.innerHTML = '';
@@ -108,19 +93,17 @@ document.addEventListener('DOMContentLoaded', () => {
         let filteredExams;
         if (filter === 'my_routine') {
             filteredExams = allExams.filter(exam => myRoutineSubjects.includes(exam.subject));
-            appTitle.textContent = "এইচএসসি ২০২৫: আমার রুটিন";
-        } else if (filter === 'all') {
-            filteredExams = allExams;
-            appTitle.textContent = "এইচএসসি ২০২৫: সম্পূর্ণ রুটিন";
+            appTitle.innerHTML = "এইচএসসি ২০২৫:<br>আমার রুটিন";
         } else {
-            const deptName = {science: 'বিজ্ঞান বিভাগ', humanities: 'মানবিক বিভাগ', business: 'ব্যবসায় শিক্ষা'}[filter];
-            filteredExams = allExams.filter(exam => exam.department === filter || exam.department === 'common');
-            appTitle.textContent = `এইচএসসি ২০২৫: ${deptName}`;
+             // অন্যান্য ফিল্টারের জন্য টাইটেল পরিবর্তন
+            const titleMap = { all: "সম্পূর্ণ রুটিন", science: "বিজ্ঞান বিভাগ", humanities: "মানবিক", business: "ব্যবসায় শিক্ষা"};
+            appTitle.innerHTML = `এইচএসসি ২০২৫:<br>${titleMap[filter]}`;
+            filteredExams = (filter === 'all') ? allExams : allExams.filter(e => e.department === filter || e.department === 'common');
         }
         
-        const headers = Array.from(document.querySelectorAll('thead th')).map(th => th.textContent);
+        filteredExams.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-        filteredExams.forEach((exam) => {
+        filteredExams.forEach(exam => {
             const row = document.createElement('tr');
             const examDateObj = new Date(exam.date);
             const formattedDate = `${toBengali(examDateObj.getDate())} ${bengaliMonths[examDateObj.getMonth()]}, ${toBengali(examDateObj.getFullYear())}`;
@@ -128,19 +111,13 @@ document.addEventListener('DOMContentLoaded', () => {
             row.innerHTML = `
                 <td>${exam.subject}</td>
                 <td>${formattedDate}</td>
-                <td class="countdown" data-exam-date="${exam.date}">লোড হচ্ছে...</td>
-                <td>${toBengali(exam.code)}</td>
+                <td class="desktop-only countdown" data-exam-date="${exam.date}"></td>
+                <td class="desktop-only">${toBengali(exam.code)}</td>
             `;
-            
-            // মোবাইল ভিউ এর জন্য data-label যোগ করা
-            row.querySelectorAll('td').forEach((td, i) => {
-                td.setAttribute('data-label', headers[i]);
-            });
-
             routineBody.appendChild(row);
         });
 
-        updateAllCountdowns();
+        updateAllCountdowns(); // প্রথমবার লোড করার জন্য
         countdownInterval = setInterval(updateAllCountdowns, 1000);
     };
 

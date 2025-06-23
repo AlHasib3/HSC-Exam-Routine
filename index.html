@@ -14,14 +14,11 @@
         <!-- হেডার -->
         <header>
             <div class="header-title">
-                <h1 id="app-title">এইচএসসি ২০২৫: আমার রুটিন</h1>
+                <h1 id="app-title">এইচএসসি ২০২৫:<br>আমার রুটিন</h1>
                 <h2 id="app-subtitle">পরীক্ষার সময়সূচি</h2>
             </div>
-            <div class="header-right">
-                <div class="time-container">
-                    <div class="time-display" id="time-display"></div>
-                    <div class="date-display" id="date-display"></div>
-                </div>
+            <div class="header-bottom">
+                <div class="date-display" id="date-display"></div>
                 <button id="menu-toggle" class="menu-btn">☰</button>
             </div>
         </header>
@@ -34,8 +31,8 @@
                         <tr>
                             <th>বিষয়</th>
                             <th>পরীক্ষার তারিখ</th>
-                            <th>বাকি সময়</th>
-                            <th>বিষয় কোড</th>
+                            <th class="desktop-only">বাকি সময়</th>
+                            <th class="desktop-only">বিষয় কোড</th>
                         </tr>
                     </thead>
                     <tbody id="routine-body">
@@ -53,7 +50,8 @@
             <button id="menu-close" class="menu-btn">×</button>
         </div>
         <div class="menu-content">
-            <div class="menu-section">
+            <!-- মেনুর অপশনগুলো আগের মতোই থাকবে -->
+             <div class="menu-section">
                 <h3>সাধারণ</h3>
                 <button class="filter-btn active" data-filter="my_routine">আমার রুটিন</button>
             </div>

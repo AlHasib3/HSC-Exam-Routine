@@ -3,13 +3,11 @@
     --bg-color: #f8f9fa;
     --table-bg: #ffffff;
     --text-color: #343a40;
-    --header-bg: #f3f0f7;
     --header-text: #212529;
-    --th-bg: #efeaf5;
+    --th-bg: #f3f0f7;
     --th-text: #6f42c1;
-    --border-color: #dee2e6;
+    --border-color: #e9ecef;
     --menu-bg: #ffffff;
-    --menu-text: #34495e;
     --active-btn-bg: #6f42c1;
     --active-btn-text: #ffffff;
     --shadow-color: rgba(0, 0, 0, 0.05);
@@ -19,13 +17,11 @@ body.dark-mode {
     --bg-color: #121212;
     --table-bg: #1e1e1e;
     --text-color: #e0e0e0;
-    --header-bg: #1f1f1f;
     --header-text: #f1f1f1;
     --th-bg: #2c2a31;
     --th-text: #bb86fc;
     --border-color: #333333;
     --menu-bg: #2c2c2c;
-    --menu-text: #ecf0f1;
     --active-btn-bg: #bb86fc;
     --active-btn-text: #121212;
 }
@@ -42,153 +38,149 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: background-color 0.3s, color 0.3s;
+    -webkit-tap-highlight-color: transparent; /* ট্যাপ করলে ফ্ল্যাশ বন্ধ হবে */
 }
 
 .container {
-    max-width: 900px;
-    margin: 0 auto;
     padding: 15px;
 }
 
-/* --- হেডার --- */
+/* --- হেডার (মোবাইলের জন্য অপটিমাইজড) --- */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
     margin-bottom: 20px;
 }
 
+.header-title {
+    margin-bottom: 15px;
+}
+
 .header-title h1 {
-    font-size: 1.4rem;
-    font-weight: 600; margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--header-text);
 }
 
 .header-title h2 {
     font-size: 0.9rem;
     font-weight: 400;
-    opacity: 0.8; margin: 0;
+    opacity: 0.7;
+    margin-top: 5px;
+    color: var(--header-text);
 }
 
-.header-right {
+.header-bottom {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 20px;
 }
 
-.time-container { text-align: right; }
-.time-display { font-size: 1.2rem; font-weight: 600; }
-.date-display { font-size: 0.8rem; opacity: 0.8; }
-.menu-btn { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--text-color); }
+.date-display {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--header-text);
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--header-text);
+}
 
 /* --- টেবিল স্টাইল --- */
 .table-container {
     background-color: var(--table-bg);
-    border-radius: 8px;
-    box-shadow: 0 4px 15px var(--shadow-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow-color);
     overflow: hidden;
 }
 
-table { width: 100%; border-collapse: collapse; }
-th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; }
-thead tr { background-color: var(--th-bg); }
-th { font-weight: 600; color: var(--th-text); }
-tbody tr:last-child td { border-bottom: none; }
-td:nth-child(1) { font-weight: 500; }
-td:nth-child(3) { min-width: 180px; }
-td:nth-child(4) { text-align: center; font-weight: 600; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
 
-/* --- সেটিংস মেনু (সাইডবার) - আগের মতোই --- */
-#settings-menu { position: fixed; top: 0; right: -300px; width: 280px; height: 100%; background-color: var(--menu-bg); box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2); z-index: 1000; transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); display: flex; flex-direction: column; }
+th, td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+thead tr {
+    background-color: var(--th-bg);
+}
+
+th {
+    font-weight: 600;
+    color: var(--th-text);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+td:nth-child(1) { /* বিষয় কলাম */
+    width: 60%;
+    font-weight: 500;
+}
+td:nth-child(2) { /* তারিখ কলাম */
+    width: 40%;
+}
+
+/* মোবাইলে এই কলামগুলো লুকানো থাকবে */
+.desktop-only {
+    display: none;
+}
+
+/* --- সেটিংস মেনু (আগের মতোই) --- */
+#settings-menu {
+    position: fixed; top: 0; right: -300px; width: 280px; height: 100%;
+    background-color: var(--menu-bg); box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000; transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex; flex-direction: column;
+}
 #settings-menu.open { right: 0; }
-#overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999; opacity: 0; visibility: hidden; transition: opacity 0.4s, visibility 0.4s; }
+#overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); z-index: 999;
+    opacity: 0; visibility: hidden; transition: opacity 0.4s, visibility 0.4s;
+}
 #overlay.active { opacity: 1; visibility: visible; }
 .menu-header { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid var(--border-color); }
-.menu-header h2 { font-size: 1.3rem; color: var(--menu-text); }
-#menu-close { color: var(--menu-text); font-size: 2rem; }
+.menu-header h2 { font-size: 1.3rem; }
+#menu-close { font-size: 2rem; }
 .menu-content { padding: 15px; overflow-y: auto; }
 .menu-section { margin-bottom: 25px; }
 .menu-section h3 { font-size: 1rem; margin-bottom: 12px; color: var(--th-text); border-bottom: 1px solid var(--border-color); padding-bottom: 5px; }
-.menu-section button { width: 100%; padding: 10px; margin-bottom: 8px; border: 1px solid var(--border-color); background-color: transparent; color: var(--menu-text); text-align: left; border-radius: 6px; cursor: pointer; font-size: 0.95rem; font-family: 'Noto Sans Bengali', sans-serif; transition: background-color 0.2s, color 0.2s; }
+.menu-section button {
+    width: 100%; padding: 10px; margin-bottom: 8px; border: 1px solid var(--border-color);
+    background-color: transparent; color: var(--text-color); text-align: left;
+    border-radius: 6px; cursor: pointer; font-size: 0.95rem;
+    font-family: 'Noto Sans Bengali', sans-serif; transition: background-color 0.2s, color 0.2s;
+}
 .menu-section button:hover { background-color: var(--border-color); }
 .menu-section button.active { background-color: var(--active-btn-bg); color: var(--active-btn-text); font-weight: 600; border-color: var(--active-btn-bg); }
 button:disabled { opacity: 0.5; cursor: not-allowed; }
 
-/* --- রেসপন্সিভ ডিজাইন (মোবাইলের জন্য বিশেষ আপডেট) --- */
-@media (max-width: 768px) {
-    /* হেডারকে স্লিম করা */
-    header {
-        padding: 10px 15px; /* প্যাডিং কমানো হয়েছে */
-        gap: 10px;
-    }
-    .header-title h1 {
-        font-size: 1.1rem; /* ফন্ট সাইজ কমানো হয়েছে */
-    }
-    .header-title h2 {
-        font-size: 0.8rem;
-    }
-    .time-display {
-        font-size: 1rem;
-    }
-    .date-display {
-        font-size: 0.75rem;
+/* --- রেসপন্সিভ (বড় স্ক্রিনের জন্য) --- */
+@media (min-width: 768px) {
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
     }
     
-    /* টেবিলকে কার্ড লেআউটে রূপান্তর */
-    .table-container {
-        box-shadow: none;
-        background: none;
-        border-radius: 0;
+    /* বড় স্ক্রিনে ৪ কলাম দেখাবে */
+    .desktop-only {
+        display: table-cell;
     }
-    table, thead, tbody, th, td, tr {
-        display: block;
-    }
-    thead {
-        display: none; /* মূল হেডার спрятан */
-    }
-    tr {
-        margin-bottom: 15px;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px var(--shadow-color);
-        background-color: var(--table-bg);
-        border: 1px solid var(--border-color);
-    }
-    td {
-        border: none;
-        border-bottom: 1px solid var(--border-color);
-        position: relative;
-        padding: 12px;
-        padding-left: 45%; /* লেবেলের জন্য জায়গা তৈরি */
-        text-align: right;
-        min-height: 2.5em; /* উচ্চতা ঠিক রাখা */
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-    }
-    td:last-child {
-        border-bottom: none;
-    }
-    td::before {
-        content: attr(data-label); /* data-label থেকে টেক্সট প্রদর্শন */
-        position: absolute;
-        left: 12px;
-        width: 40%;
-        text-align: left;
-        font-weight: 600;
-        color: var(--th-text);
-    }
-    /* মোবাইল ভিউতে নির্দিষ্ট কলামের জন্য বিশেষ স্টাইল */
-    td:nth-child(3) { min-width: unset; } /* باقي সময় এর min-width রিসেট */
-    td:nth-child(4) { justify-content: flex-end; } /* বিষয় কোড ডানে সরানো */
-}
 
-@media (max-width: 400px) {
-    .header-right {
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 5px;
-    }
-    .header-title h1 {
-        font-size: 1rem;
-    }
+    td:nth-child(1) { width: 35%; }
+    td:nth-child(2) { width: 25%; }
+    td:nth-child(3) { width: 25%; }
+    td:nth-child(4) { width: 15%; text-align: center;}
 }
