@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { subject: 'জীববিজ্ঞান ২য় পত্র', code: '179', date: '2025-07-30', department: 'science' },
         { subject: 'উচ্চতর গণিত ১ম পত্র', code: '265', date: '2025-08-04', department: 'science' },
         { subject: 'উচ্চতর গণিত ২য় পত্র', code: '266', date: '2025-08-06', department: 'science' },
-        // অন্যান্য বিভাগের সাবজেক্ট এখানে যোগ করা যাবে
         { subject: 'হিসাববিজ্ঞান ১ম পত্র', code: '253', date: '2025-07-10', department: 'business' },
         { subject: 'হিসাববিজ্ঞান ২য় পত্র', code: '254', date: '2025-07-13', department: 'business' },
         { subject: 'পৌরনীতি ও সুশাসন ১ম পত্র', code: '269', date: '2025-07-28', department: 'humanities' },
@@ -65,13 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- কাউন্টডাউন গণনা ও ফরম্যাটিং ---
     const calculateTimeLeft = (examDate) => {
-        const targetTime = new Date(`${examDate}T10:00:00`); // পরীক্ষা সকাল ১০টায় শুরু
+        const targetTime = new Date(`${examDate}T10:00:00`);
         const now = new Date();
         let diff = targetTime - now;
 
         if (diff <= 0) return { finished: true };
 
-        diff /= 1000; // সেকেন্ডে রূপান্তর
+        diff /= 1000;
         const seconds = Math.floor(diff % 60);
         diff /= 60;
         const minutes = Math.floor(diff % 60);
@@ -79,10 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const hours = Math.floor(diff % 24);
         const totalDays = Math.floor(diff / 24);
         
-        // মাস ও দিন গণনা
         let months = 0;
         let days = totalDays;
-        // আনুমানিক মাস গণনা (৩০ দিনের হিসাবে)
         if (days >= 30) {
             months = Math.floor(days / 30);
             days = days % 30;
@@ -121,7 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
             appTitle.textContent = `এইচএসসি ২০২৫: ${deptName}`;
         }
         
-        filteredExams.forEach((exam, index) => {
+        const headers = Array.from(document.querySelectorAll('thead th')).map(th => th.textContent);
+
+        filteredExams.forEach((exam) => {
             const row = document.createElement('tr');
             const examDateObj = new Date(exam.date);
             const formattedDate = `${toBengali(examDateObj.getDate())} ${bengaliMonths[examDateObj.getMonth()]}, ${toBengali(examDateObj.getFullYear())}`;
@@ -132,6 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td class="countdown" data-exam-date="${exam.date}">লোড হচ্ছে...</td>
                 <td>${toBengali(exam.code)}</td>
             `;
+            
+            // মোবাইল ভিউ এর জন্য data-label যোগ করা
+            row.querySelectorAll('td').forEach((td, i) => {
+                td.setAttribute('data-label', headers[i]);
+            });
+
             routineBody.appendChild(row);
         });
 
