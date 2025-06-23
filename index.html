@@ -3,330 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSC Routine 2025</title>
+    <title>এইচএসসি ২০২৫ রুটিন</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            /* New Premium Color & Style Variables */
-            --primary-color: #6a11cb;
-            --secondary-color: #2575fc;
-            --header-bg: rgba(255, 255, 255, 0.8);
-            --header-text-color: #333;
-            --body-bg: #f4f7f9;
-            --text-color: #444;
-            --container-bg: #ffffff;
-            --border-color: #e9ecef;
-            --shadow-color: rgba(106, 17, 203, 0.15);
-            --font-bn: 'Noto Sans Bengali', sans-serif;
-            --font-en: 'Poppins', sans-serif;
-            --transition-speed: 0.4s;
-        }
-
-        .dark-mode {
-            --primary-color: #8e44ad;
-            --secondary-color: #3498db;
-            --header-bg: rgba(24, 26, 31, 0.85);
-            --header-text-color: #e0e0e0;
-            --body-bg: #121212;
-            --text-color: #c9c9c9;
-            --container-bg: #181a1f;
-            --border-color: #2c2f36;
-            --shadow-color: rgba(0, 0, 0, 0.2);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: var(--font-bn), var(--font-en), sans-serif;
-            background-color: var(--body-bg);
-            color: var(--text-color);
-            padding-top: 80px;
-            transition: background-color var(--transition-speed), color var(--transition-speed);
-        }
-
-        .main-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background-color: var(--header-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: var(--header-text-color);
-            padding: 0 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            transition: all var(--transition-speed) ease;
-        }
-        .header-text h2 { font-size: 1.25rem; font-weight: 600; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .header-text p { font-size: 0.85rem; margin: 0; opacity: 0.7; }
-        .header-right { display: flex; align-items: center; gap: 1.25rem; }
-        #live-datetime { text-align: right; }
-        #live-clock { font-size: 1.1rem; font-weight: 600; }
-        #live-date { font-size: 0.75rem; opacity: 0.8; }
-        #settings-icon { font-size: 1.7rem; cursor: pointer; color: var(--header-text-color); transition: transform var(--transition-speed); }
-        #settings-icon:hover { transform: rotate(90deg); }
-        
-        main { padding: 1.5rem; }
-        .table-wrapper { width: 100%; overflow-x: auto; background-color: var(--container-bg); border-radius: 0.75rem; box-shadow: 0 8px 30px var(--shadow-color); }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 1.25rem; text-align: left; border-bottom: 1px solid var(--border-color); white-space: nowrap; }
-        thead { background-color: color-mix(in srgb, var(--primary-color) 8%, transparent); }
-        th { font-weight: 600; font-size: 0.8rem; text-transform: uppercase; color: var(--primary-color); letter-spacing: 0.5px; }
-        tbody tr { transition: background-color var(--transition-speed); }
-        tbody tr:last-child td { border-bottom: none; }
-        tbody tr:hover { background-color: color-mix(in srgb, var(--primary-color) 15%, transparent); }
-        .countdown { font-weight: 600; }
-        .expired { color: #e74c3c; font-weight: bold; }
-
-        .panel { position: fixed; top: 0; right: -360px; width: 320px; height: 100%; background-color: var(--container-bg); box-shadow: -5px 0 25px rgba(0,0,0,0.15); z-index: 2000; transition: right 0.4s ease-in-out; padding: 1.5rem; overflow-y: auto; color: var(--text-color); }
-        .panel.open { right: 0; }
-        .panel-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1.5rem; }
-        .panel-header h3 { margin: 0; font-size: 1.2rem; }
-        .panel-close { font-size: 1.75rem; cursor: pointer; font-weight: bold; color: var(--text-color); }
-        details.setting-accordion { margin-bottom: 1rem; border-radius: 0.5rem; border: 1px solid var(--border-color); }
-        details.setting-accordion summary { font-weight: 600; padding: 0.8rem 1rem; cursor: pointer; list-style: none; }
-        details.setting-accordion[open] summary { border-bottom: 1px solid var(--border-color); }
-        details.setting-accordion summary::-webkit-details-marker { display: none; }
-        .setting-content { padding: 1rem; }
-        .setting-group { margin-bottom: 1.5rem; }
-        .setting-group label { display: block; margin-bottom: 0.75rem; font-weight: 500; }
-        .btn-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .btn-group button { flex-basis: calc(50% - 0.25rem); flex-grow: 1; padding: 0.7rem; border: 2px solid var(--border-color); background-color: transparent; color: var(--text-color); border-radius: 0.5rem; cursor: pointer; font-size: 0.9rem; transition: all var(--transition-speed); }
-        .btn-group button.active { background-color: var(--primary-color); color: #fff; border-color: var(--primary-color); font-weight: bold; }
-        .reset-btn { width: 100%; background-color: #c0392b; color: white; border: none; padding: 0.8rem; font-size: 1rem; font-weight: bold; border-radius: 0.5rem; cursor: pointer; }
-
-        @media (max-width: 768px) {
-            body { padding-top: 70px; }
-            .main-header { height: 70px; padding: 0 1rem; }
-            .header-text h2 { font-size: 1rem; }
-            .header-text p { font-size: 0.7rem; }
-            #live-clock { font-size: 0.9rem; }
-            #live-date { font-size: 0.65rem; }
-            main { padding: 1rem; }
-            th, td { padding: 1rem; font-size: 14px; }
-        }
-
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <header class="main-header">
-        <div class="header-text">
-            <h2 id="main-title"></h2>
-            <p data-lang-key="sub_title"></p>
-        </div>
-        <div class="header-right">
-            <div id="live-datetime">
-                <div id="live-clock"></div>
-                <div id="live-date"></div>
+    <div class="container">
+        <!-- হেডার -->
+        <header>
+            <div class="header-title">
+                <h1 id="app-title">এইচএসসি ২০২৫: আমার রুটিন</h1>
+                <h2 id="app-subtitle">পরীক্ষার সময়সূচি</h2>
             </div>
-            <div id="settings-icon" title="সেটিংস খুলুন">☰</div>
-        </div>
-    </header>
-
-    <main>
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th data-lang-key="col_subject"></th>
-                        <th data-lang-key="col_date"></th>
-                        <th data-lang-key="col_countdown"></th>
-                        <th data-lang-key="col_code"></th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </main>
-
-    <div id="settings-panel" class="panel">
-        <div class="panel-header">
-            <h3 data-lang-key="settings_title"></h3>
-            <span class="panel-close">&times;</span>
-        </div>
-        
-        <details class="setting-accordion" open>
-            <summary data-lang-key="appearance_title">সাধারণ</summary>
-            <div class="setting-content">
-                <div class="setting-group">
-                    <label data-lang-key="dept_select_title" title="আপনার বিভাগ নির্বাচন করুন"></label>
-                    <div class="btn-group">
-                        <button id="group-amar_routine" data-lang-key="group_amar_routine">আমার রুটিন</button>
-                        <button id="group-science" data-lang-key="group_science">বিজ্ঞান</button>
-                        <button id="group-humanities" data--lang-key="group_humanities">মানবিক</button>
-                        <button id="group-business" data-lang-key="group_business">ব্যবসায়</button>
-                    </div>
+            <div class="header-right">
+                <div class="time-container">
+                    <div class="time-display" id="time-display"></div>
+                    <div class="date-display" id="date-display"></div>
                 </div>
-                <div class="setting-group">
-                    <label data-lang-key="lang_title" title="ওয়েবসাইটের ভাষা পরিবর্তন করুন"></label>
-                    <div class="btn-group">
-                        <button id="lang-bn" data-lang-key="lang_bn">বাংলা</button>
-                        <button id="lang-en" data-lang-key="lang_en">English</button>
-                    </div>
-                </div>
-                <div class="setting-group">
-                    <label data-lang-key="theme_title" title="ওয়েবসাইটের জন্য লাইট বা ডার্ক মোড বাছাই করুন"></label>
-                    <div class="btn-group">
-                        <button id="theme-light" data-lang-key="theme_light">লাইট</button>
-                        <button id="theme-dark" data-lang-key="theme_dark">ডার্ক</button>
-                    </div>
-                </div>
+                <button id="menu-toggle" class="menu-btn">☰</button>
             </div>
-        </details>
-        <details class="setting-accordion">
-            <summary data-lang-key="reset_title">রিসেট</summary>
-            <div class="setting-content">
-                <button id="reset-settings-btn" class="reset-btn" data-lang-key="reset_button" title="সকল কাস্টমাইজেশন মুছে ডিফল্ট অবস্থায় ফিরে যান"></button>
+        </header>
+
+        <!-- রুটিন টেবিল -->
+        <main>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>বিষয়</th>
+                            <th>পরীক্ষার তারিখ</th>
+                            <th>বাকি সময়</th>
+                            <th>বিষয় কোড</th>
+                        </tr>
+                    </thead>
+                    <tbody id="routine-body">
+                        <!-- জাভাস্ক্রিপ্ট দিয়ে এখানে রুটিন জেনারেট হবে -->
+                    </tbody>
+                </table>
             </div>
-        </details>
+        </main>
     </div>
-    
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const amarRoutineData = [ { date: '2025-06-26', subject_key: 'ban_1', code: '101', time: 'morning' }, { date: '2025-06-29', subject_key: 'ban_2', code: '102', time: 'morning' }, { date: '2025-07-01', subject_key: 'en_1', code: '107', time: 'morning' }, { date: '2025-07-03', subject_key: 'en_2', code: '108', time: 'morning' }, { date: '2025-07-07', subject_key: 'ict', code: '275', time: 'morning' }, { date: '2025-07-10', subject_key: 'phy_1', code: '174', time: 'morning' }, { date: '2025-07-13', subject_key: 'phy_2', code: '175', time: 'morning' }, { date: '2025-07-20', subject_key: 'che_1', code: '176', time: 'morning' }, { date: '2025-07-22', subject_key: 'che_2', code: '177', time: 'morning' }, { date: '2025-07-28', subject_key: 'bio_1', code: '178', time: 'morning' }, { date: '2025-07-30', subject_key: 'bio_2', code: '179', time: 'morning' }, { date: '2025-08-04', subject_key: 'hmath_1', code: '265', time: 'morning' }, { date: '2025-08-06', subject_key: 'hmath_2', code: '266', time: 'morning' }];
-        const masterExamData = [ {date:"2025-06-26",time:"morning",subject_key:"ban_1",code:"101",departments:["all"]},{date:"2025-06-29",time:"morning",subject_key:"ban_2",code:"102",departments:["all"]},{date:"2025-07-01",time:"morning",subject_key:"en_1",code:"107",departments:["all"]},{date:"2025-07-03",time:"morning",subject_key:"en_2",code:"108",departments:["all"]},{date:"2025-07-07",time:"morning",subject_key:"ict",code:"275",departments:["all"]},{date:"2025-07-10",time:"morning",subject_key:"phy_1",code:"174",departments:["science"]},{date:"2025-07-10",time:"morning",subject_key:"acc_1",code:"253",departments:["business"]},{date:"2025-07-10",time:"morning",subject_key:"logic_1",code:"121",departments:["humanities"]},{date:"2025-07-13",time:"morning",subject_key:"phy_2",code:"175",departments:["science"]},{date:"2025-07-13",time:"morning",subject_key:"acc_2",code:"254",departments:["business"]},{date:"2025-07-13",time:"morning",subject_key:"logic_2",code:"122",departments:["humanities"]},{date:"2025-07-20",time:"morning",subject_key:"che_1",code:"176",departments:["science"]},{date:"2025-07-20",time:"morning",subject_key:"islamic_h_1",code:"267",departments:["humanities"]},{date:"2025-07-20",time:"morning",subject_key:"prod_m_1",code:"286",departments:["business"]},{date:"2025-07-22",time:"morning",subject_key:"che_2",code:"177",departments:["science"]},{date:"2025-07-22",time:"morning",subject_key:"islamic_h_2",code:"268",departments:["humanities"]},{date:"2025-07-22",time:"morning",subject_key:"prod_m_2",code:"287",departments:["business"]},{date:"2025-07-24",time:"morning",subject_key:"eco_1",code:"109",departments:["humanities","business"]},{date:"2025-07-27",time:"morning",subject_key:"eco_2",code:"110",departments:["humanities","business"]},{date:"2025-07-28",time:"morning",subject_key:"civics_1",code:"269",departments:["humanities"]},{date:"2025-07-28",time:"morning",subject_key:"bio_1",code:"178",departments:["science"]},{date:"2025-07-28",time:"morning",subject_key:"business_org_1",code:"277",departments:["business"]},{date:"2025-07-30",time:"morning",subject_key:"civics_2",code:"270",departments:["humanities"]},{date:"2025-07-30",time:"morning",subject_key:"bio_2",code:"179",departments:["science"]},{date:"2025-07-30",time:"morning",subject_key:"business_org_2",code:"278",departments:["business"]},{date:"2025-08-04",time:"morning",subject_key:"hmath_1",code:"265",departments:["science"]},{date:"2025-08-04",time:"morning",subject_key:"islamic_s_1",code:"249",departments:["humanities"]},{date:"2025-08-06",time:"morning",subject_key:"hmath_2",code:"266",departments:["science"]},{date:"2025-08-06",time:"morning",subject_key:"islamic_s_2",code:"250",departments:["humanities"]},{date:"2025-08-07",time:"morning",subject_key:"fin_1",code:"292",departments:["business"]},{date:"2025-08-10",time:"morning",subject_key:"fin_2",code:"293",departments:["business"]}];
-        const translations={bn:{main_title:"এইচএসসি ২০২৫:",sub_title:"পরীক্ষার সময়সূচি",col_subject:"বিষয়",col_code:"বিষয় কোড",col_date:"পরীক্ষার তারিখ",col_countdown:"বাকি সময়",group_amar_routine:"আমার রুটিন",group_science:"বিজ্ঞান বিভাগ",group_humanities:"মানবিক বিভাগ",group_business:"ব্যবসায় শিক্ষা",time_m:"সকাল ১০টা",time_a:"বিকাল ২টা",ban_1:"বাংলা ১ম পত্র",ban_2:"বাংলা ২য় পত্র",en_1:"ইংরেজি ১ম পত্র",en_2:"ইংরেজি ২য় পত্র",ict:"তথ্য ও যোগাযোগ প্রযুক্তি",phy_1:"পদার্থবিজ্ঞান ১ম পত্র",acc_1:"হিসাববিজ্ঞান ১ম পত্র",logic_1:"যুক্তিবিদ্যা ১ম পত্র",phy_2:"পদার্থবিজ্ঞান ২য় পত্র",acc_2:"হিসাববিজ্ঞান ২য় পত্র",logic_2:"যুক্তিবিদ্যা ২য় পত্র",che_1:"রসায়ন ১ম পত্র",islamic_h_1:"ইসলামের ইতিহাস ও সংস্কৃতি ১ম পত্র",prod_m_1:"উৎপাদন ব্যবস্থাপনা ও বিপণন ১ম পত্র",che_2:"রসায়ন ২য় পত্র",islamic_h_2:"ইসলামের ইতিহাস ও সংস্কৃতি ২য় পত্র",prod_m_2:"উৎপাদন ব্যবস্থাপনা ও বিপণন ২য় পত্র",eco_1:"অর্থনীতি ১ম পত্র",eco_2:"অর্থনীতি ২য় পত্র",civics_1:"পৌরনীতি ও সুশাসন ১ম পত্র",bio_1:"জীববিজ্ঞান ১ম পত্র",business_org_1:"ব্যবসায় সংগঠন ও ব্যবস্থাপনা ১ম পত্র",civics_2:"পৌরনীতি ও সুশাসন ২য় পত্র",bio_2:"জীববিজ্ঞান ২য় পত্র",business_org_2:"ব্যবসায় সংগঠন ও ব্যবস্থাপনা ২য় পত্র",hmath_1:"উচ্চতর গণিত ১ম পত্র",islamic_s_1:"ইসলাম শিক্ষা ১ম পত্র",hmath_2:"উচ্চতর গণিত ২য় পত্র",islamic_s_2:"ইসলাম শিক্ষা ২য় পত্র",fin_1:"ফিন্যান্স, ব্যাংকিং ও বিমা ১ম পত্র",fin_2:"ফিন্যান্স, ব্যাংকিং ও বিমা ২য় পত্র",countdown_calculating:"গণনা হচ্ছে...",countdown_expired:"পরীক্ষা শেষ",month:" মাস",day:" দিন",time_periods:{night:"রাত",dawn:"ভোর",morning:"সকাল",noon:"দুপুর",afternoon:"বিকাল",evening:"সন্ধ্যা"},settings_title:"সেটিংস",appearance_title:"সাধারণ",dept_select_title:"বিভাগ নির্বাচন",lang_title:"ভাষা",lang_bn:"বাংলা",lang_en:"English",theme_title:"থিম মোড",theme_light:"লাইট",theme_dark:"ডার্ক",reset_title:"রিসেট",reset_button:"ডিফল্ট করুন",reset_confirm:"আপনি কি সকল সেটিংস মুছে ফেলতে চান?",settings_link_title:"সেটিংস"},en:{main_title:"HSC 2025:",sub_title:"Exam Schedule",col_subject:"Subject",col_code:"Code",col_date:"Date",col_countdown:"Time Remaining",group_amar_routine:"My Routine",group_science:"Science",group_humanities:"Humanities",group_business:"Business Studies",time_m:"10:00 AM",time_a:"02:00 PM",ban_1:"Bangla 1st Paper",ban_2:"Bangla 2nd Paper",en_1:"English 1st Paper",en_2:"English 2nd Paper",ict:"ICT",phy_1:"Physics 1st Paper",acc_1:"Accounting 1st Paper",logic_1:"Logic 1st Paper",phy_2:"Physics 2nd Paper",acc_2:"Accounting 2nd Paper",logic_2:"Logic 2nd Paper",che_1:"Chemistry 1st Paper",islamic_h_1:"Islamic History & Culture 1st",prod_m_1:"Production Mgmt. & Marketing 1st",che_2:"Chemistry 2nd Paper",islamic_h_2:"Islamic History & Culture 2nd",prod_m_2:"Production Mgmt. & Marketing 2nd",eco_1:"Economics 1st Paper",eco_2:"Economics 2nd Paper",civics_1:"Civics & Good Governance 1st",bio_1:"Biology 1st Paper",business_org_1:"Business Org. & Mgmt. 1st",civics_2:"Civics & Good Governance 2nd",bio_2:"Biology 2nd Paper",business_org_2:"Business Org. & Mgmt. 2nd",hmath_1:"Higher Mathematics 1st Paper",islamic_s_1:"Islamic Studies 1st Paper",hmath_2:"Higher Mathematics 2nd Paper",islamic_s_2:"Islamic Studies 2nd Paper",fin_1:"Finance, Banking & Insurance 1st",fin_2:"Finance, Banking & Insurance 2nd",countdown_calculating:"Calculating...",countdown_expired:"Exam Finished",month:" months",day:" days",time_periods:{night:"Night",dawn:"Dawn",morning:"Morning",noon:"Noon",afternoon:"Afternoon",evening:"Evening"},settings_title:"Settings",appearance_title:"General",dept_select_title:"Select Department",lang_title:"Language",lang_bn:"Bengali",lang_en:"English",theme_title:"Theme Mode",theme_light:"Light",theme_dark:"Dark",reset_title:"Reset",reset_button:"Reset to Default",reset_confirm:"Are you sure you want to reset all settings?",settings_link_title:"Settings"}};
-        
-        let settings;
-        const defaultSettings = { lang: 'bn', theme: 'light', group: 'amar_routine' };
 
-        function loadSettings() {
-            settings = {
-                lang: localStorage.getItem('appLang') || defaultSettings.lang,
-                theme: localStorage.getItem('appTheme') || defaultSettings.theme,
-                group: localStorage.getItem('appGroup') || defaultSettings.group
-            };
-        }
+    <!-- সেটিংস মেনু (সাইডবার) -->
+    <aside id="settings-menu">
+        <div class="menu-header">
+            <h2>সেটিংস</h2>
+            <button id="menu-close" class="menu-btn">×</button>
+        </div>
+        <div class="menu-content">
+            <div class="menu-section">
+                <h3>সাধারণ</h3>
+                <button class="filter-btn active" data-filter="my_routine">আমার রুটিন</button>
+            </div>
+            <div class="menu-section">
+                <h3>বিভাগ নির্বাচন</h3>
+                <button class="filter-btn" data-filter="all">সকল বিভাগ</button>
+                <button class="filter-btn" data-filter="science">বিজ্ঞান বিভাগ</button>
+                <button class="filter-btn" data-filter="humanities">মানবিক</button>
+                <button class="filter-btn" data-filter="business">ব্যবসায় শিক্ষা</button>
+            </div>
+            <div class="menu-section">
+                <h3>ভাষা</h3>
+                <button class="lang-btn active" data-lang="bn">বাংলা</button>
+                <button class="lang-btn" data-lang="en" disabled>English</button> <!-- আপাতত নিষ্ক্রিয় -->
+            </div>
+            <div class="menu-section">
+                <h3>থিম মোড</h3>
+                <button id="light-mode-btn" class="theme-btn">লাইট</button>
+                <button id="dark-mode-btn" class="theme-btn">ডার্ক</button>
+            </div>
+            <div class="menu-section">
+                <h3>রিসেট</h3>
+                <button id="reset-btn">ডিফল্ট করুন</button>
+            </div>
+        </div>
+    </aside>
 
-        function applySettings() {
-            document.body.className = settings.theme === 'dark' ? 'dark-mode' : '';
-            document.documentElement.lang = settings.lang;
-            
-            const langDict = translations[settings.lang];
-            document.querySelectorAll('[data-lang-key]').forEach(el => {
-                const key = el.getAttribute('data-lang-key');
-                if (langDict?.[key]) el.textContent = langDict[key];
-            });
-            
-            document.getElementById('main-title').textContent = `${langDict.main_title} ${langDict['group_' + settings.group]}`;
-            
-            document.querySelectorAll('.btn-group button').forEach(b => b.classList.remove('active'));
-            document.getElementById(`lang-${settings.lang}`)?.classList.add('active');
-            document.getElementById(`theme-${settings.theme}`)?.classList.add('active');
-            document.getElementById(`group-${settings.group}`)?.classList.add('active');
+    <div id="overlay"></div>
 
-            populateTable();
-        }
-
-        function getFilteredData(group) {
-            if (group === 'amar_routine') return amarRoutineData;
-            return masterExamData.filter(exam => exam.departments.includes('all') || exam.departments.includes(group));
-        }
-
-        function populateTable() {
-            const tableBody = document.querySelector('tbody');
-            tableBody.innerHTML = '';
-            const langDict = translations[settings.lang];
-            const currentGroupData = getFilteredData(settings.group);
-
-            currentGroupData.forEach(exam => {
-                const row = document.createElement('tr');
-                const examDateObj = new Date(exam.date);
-                const dateString = new Intl.DateTimeFormat(settings.lang === 'bn' ? 'bn-BD' : 'en-GB', { day: '2-digit', month: 'long', year: 'numeric' }).format(examDateObj);
-                row.innerHTML = `
-                    <td>${langDict[exam.subject_key]}</td>
-                    <td>${dateString}</td>
-                    <td class="countdown" data-exam-date="${exam.date}" data-exam-time="${exam.time}">${langDict.countdown_calculating}</td>
-                    <td>${new Intl.NumberFormat(settings.lang === 'bn' ? 'bn-BD' : 'en-US').format(exam.code)}</td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-        
-        // --- EVENT LISTENERS & TIMERS ---
-        document.getElementById('settings-icon').addEventListener('click', () => document.getElementById('settings-panel').classList.add('open'));
-        document.querySelector('.panel-close').addEventListener('click', () => document.getElementById('settings-panel').classList.remove('open'));
-        
-        ['lang-bn', 'lang-en', 'theme-light', 'theme-dark', 'group-amar_routine', 'group-science', 'group-humanities', 'group-business'].forEach(id => {
-            const button = document.getElementById(id);
-            if(button) {
-                button.addEventListener('click', (e) => {
-                    const [key, ...valueParts] = e.target.id.split('-');
-                    const value = valueParts.join('-');
-                    const storageKey = `app${key.charAt(0).toUpperCase() + key.slice(1)}`;
-                    localStorage.setItem(storageKey, value);
-                    loadSettings();
-                    applySettings();
-                });
-            }
-        });
-        
-        document.getElementById('reset-settings-btn').addEventListener('click', () => {
-            if (confirm(translations[settings.lang].reset_confirm)) {
-                ['appLang', 'appTheme', 'appGroup'].forEach(key => localStorage.removeItem(key));
-                location.reload();
-            }
-        });
-
-        setInterval(() => {
-            const now = new Date();
-            const langDict = translations[settings.lang];
-            const clockEl = document.getElementById('live-clock');
-            const dateEl = document.getElementById('live-date');
-
-            if (settings.lang === 'bn') {
-                let hours = now.getHours();
-                let periodKey = 'night';
-                if (hours >= 4 && hours < 6) periodKey = 'dawn'; 
-                else if (hours >= 6 && hours < 12) periodKey = 'morning'; 
-                else if (hours >= 12 && hours < 16) periodKey = 'noon'; 
-                else if (hours >= 16 && hours < 18) periodKey = 'afternoon'; 
-                else if (hours >= 18 && hours < 20) periodKey = 'evening';
-                const timeString = new Intl.DateTimeFormat('bn-BD', {hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true}).format(now);
-                clockEl.textContent = `${langDict.time_periods[periodKey]} ${timeString.replace(/\s*AM|PM/i, '').trim()}`;
-            } else {
-                clockEl.textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
-            }
-            dateEl.textContent = new Intl.DateTimeFormat(settings.lang === 'bn' ? 'bn-BD' : 'en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(now);
-            
-            document.querySelectorAll('.countdown').forEach(el => {
-                 const examTimeStr = el.getAttribute('data-exam-time') === 'morning' ? "T10:00:00" : "T14:00:00";
-                 const examDate = new Date(el.getAttribute('data-exam-date') + examTimeStr);
-                 const totalSeconds = Math.floor((examDate - now) / 1000);
-                 if (totalSeconds < 0) { el.textContent = langDict.countdown_expired; el.classList.add('expired'); return; }
-                 
-                 let rem = totalSeconds;
-                 const months = Math.floor(rem / (30.44 * 24 * 3600)); rem %= (30.44 * 24 * 3600);
-                 const days = Math.floor(rem / (24 * 3600)); rem %= (24 * 3600);
-                 const hours = Math.floor(rem / 3600); rem %= 3600;
-                 const minutes = Math.floor(rem / 60); const seconds = rem % 60;
-                 
-                 const toNativeNum = (n, p = false) => new Intl.NumberFormat(settings.lang === 'bn' ? 'bn-BD' : 'en-US', { minimumIntegerDigits: p ? 2 : 1 }).format(n);
-                 
-                 let text = '';
-                 if (months > 0) text += `${toNativeNum(months)}${langDict.month} `;
-                 if (days > 0) text += `${toNativeNum(days)}${langDict.day} `;
-                 text += `${toNativeNum(hours, true)}:${toNativeNum(minutes, true)}:${toNativeNum(seconds, true)}`;
-                 el.textContent = text;
-            });
-        }, 1000);
-        
-        loadSettings();
-        applySettings();
-    });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
