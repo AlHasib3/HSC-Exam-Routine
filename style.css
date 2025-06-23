@@ -1,3 +1,4 @@
+/* --- Global Styles & CSS Variables --- */
 :root {
     /* Color Scheme */
     --primary-color: #007bff;
@@ -46,6 +47,7 @@ body {
     transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
+/* --- Main Content Container --- */
 .schedule-container {
     background-color: var(--container-bg);
     color: var(--container-text-color);
@@ -58,8 +60,9 @@ body {
     transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
+/* --- Header Section --- */
 .container-header {
-    padding: 1.5rem 2rem;
+    padding: 1.25rem 1.5rem; /* Reduced padding for a thinner header */
     background: linear-gradient(135deg, var(--header-bg-start) 0%, var(--header-bg-end) 100%);
     color: #fff;
     display: flex;
@@ -68,16 +71,27 @@ body {
     gap: 1rem;
     transition: background var(--transition-speed);
 }
-.header-text h2 { margin: 0; font-size: 1.5rem; line-height: 1.2; }
-.header-text p { margin: 0.25rem 0 0; opacity: 0.9; font-size: 0.9rem; }
-.header-right { display: flex; align-items: center; gap: 1rem; }
+.header-text {
+    flex-shrink: 1; /* Allows this element to shrink if needed */
+    min-width: 0; /* Important for flexbox shrinking */
+}
+.header-text h2 { 
+    margin: 0; 
+    font-size: 1.25rem; /* Slightly smaller font size */
+    white-space: nowrap; /* Prevents title from wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds "..." if text is too long */
+}
+.header-text p { margin: 0; opacity: 0.9; font-size: 0.8rem; }
+.header-right { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
 #live-datetime { background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 0.5rem; text-align: center; cursor: pointer; transition: background-color var(--transition-speed); }
 #live-datetime:hover { background-color: rgba(255,255,255,0.2); }
-#live-clock { font-size: 1.1rem; font-weight: 600; }
-#live-date { font-size: 0.75rem; }
-#settings-icon { font-size: 1.75rem; cursor: pointer; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; }
+#live-clock { font-size: 1rem; font-weight: 600; }
+#live-date { font-size: 0.7rem; }
+#settings-icon { font-size: 1.5rem; cursor: pointer; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; }
 #settings-icon:hover { background-color: rgba(255,255,255,0.1); }
 
+/* --- Table Section --- */
 .table-wrapper { padding: 0 1rem 1rem; overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
 th, td { padding: 1rem 1.25rem; text-align: left; border-bottom: 1px solid var(--border-color); white-space: nowrap; transition: border-color var(--transition-speed); }
@@ -86,6 +100,7 @@ tbody tr:hover { background-color: color-mix(in srgb, var(--primary-color) 8%, t
 .countdown { font-weight: 600; color: #E67E22; }
 .expired { color: #c0392b; font-weight: 600; }
 
+/* --- Settings Panel --- */
 .panel { position: fixed; top: 0; right: -360px; width: 340px; height: 100%; background-color: var(--container-bg); box-shadow: -5px 0 25px rgba(0,0,0,0.15); z-index: 1001; transition: right 0.4s ease-in-out, background-color var(--transition-speed); padding: 1.5rem; overflow-y: auto; color: var(--container-text-color); }
 .panel.open { right: 0; }
 .panel-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1.5rem; }
@@ -106,6 +121,7 @@ input[type="color"] { border: 1px solid var(--border-color); width: 48px; height
 input[type="range"] { width: 100%; }
 #reset-settings-btn { width: 100%; padding: 0.7rem; border: 1px solid #dc3545; background-color: #dc3545; color: white; border-radius: 0.25rem; cursor: pointer; text-align: center; font-weight: bold; }
 
+/* --- Calendar Modal --- */
 .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px); }
 .modal.open { display: flex; justify-content: center; align-items: center; }
 .modal-content { background-color: var(--container-bg); padding: 1.5rem; border-radius: 1rem; width: 90%; max-width: 380px; position: relative; animation: zoomIn 0.3s; }
@@ -119,26 +135,26 @@ input[type="range"] { width: 100%; }
 .current-day { background-color: var(--primary-color); color: #fff; }
 .modal-close { position: absolute; top: 10px; right: 15px; font-size: 1.75rem; cursor: pointer; color: var(--container-text-color); }
 
-/* Responsive Fixes for Mobile App Feel */
+/* --- Responsive Fixes for Mobile --- */
 @media (max-width: 768px) {
-    body { padding: 0; }
-    .schedule-container { border-radius: 0; }
+    body { padding: 0.5rem; }
     .container-header {
         padding: 1rem 1.25rem;
-        flex-wrap: nowrap; /* Prevents wrapping for app-like header */
     }
-    .header-text {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+    .header-text h2 {
+        font-size: 1.1rem; /* Smaller font for mobile header */
     }
-    .header-text h2 { font-size: 1.15rem; }
-    .header-text p { font-size: 0.8rem; }
-    .header-right { gap: 0.5rem; flex-shrink: 0; }
-    #live-datetime { padding: 0.4rem 0.8rem; }
+    th, td { 
+        padding: 0.8rem 0.5rem; /* Reduced padding for table cells */
+        font-size: 14px; 
+    }
+}
+@media (max-width: 480px) {
+    .header-text h2 {
+        font-size: 1rem;
+    }
     #live-clock { font-size: 1rem; }
-    #live-date { font-size: 0.7rem; }
-    #settings-icon { font-size: 1.5rem; }
-    th, td { padding: 0.8rem 0.75rem; font-size: 14px; }
-    .panel { width: 280px; right: -300px; }
+    #live-date { font-size: 0.65rem; }
+    #live-datetime { padding: 0.4rem 0.8rem;}
+    .header-right { gap: 0.5rem; }
 }

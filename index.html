@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>এইচএসসি ২০২৫ পরীক্ষার সময়সূচী</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600&family=Mina:wght@400;700&family=Galada&family=Tiro+Bangla&family=Poppins:wght@400;500;600&family=Roboto:wght@400;500;700&family=Lato&family=Montserrat&family=Open+Sans&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,6 +27,7 @@
                 <div id="settings-icon" title="সেটিংস খুলুন">☰</div>
             </div>
         </div>
+        
         <div class="table-wrapper">
             <table>
                 <thead>
@@ -36,7 +39,8 @@
                         <th data-lang-key="col_countdown"></th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    </tbody>
             </table>
         </div>
     </div>
@@ -75,13 +79,50 @@
                 </div>
             </div>
         </details>
-        <details class="setting-accordion"><summary data-lang-key="font_title">ফন্ট</summary><div class="setting-content"><div class="setting-group"><label data-lang-key="font_bn_title" title="আপনার পছন্দের বাংলা ফন্ট বাছাই করুন"></label><select id="font-bn-select"><option value="'Noto Sans Bengali', sans-serif">Noto Sans</option><option value="'Hind Siliguri', sans-serif">Hind Siliguri</option><option value="'Mina', sans-serif">Mina</option><option value="'Tiro Bangla', serif">Tiro Bangla</option><option value="'Galada', cursive">Galada</option></select></div><div class="setting-group"><label data-lang-key="font_en_title" title="আপনার পছন্দের ইংরেজি ফন্ট বাছাই করুন"></label><select id="font-en-select"><option value="'Poppins', sans-serif">Poppins</option><option value="'Roboto', sans-serif">Roboto</option><option value="'Lato', sans-serif">Lato</option><option value="'Montserrat', sans-serif">Montserrat</option><option value="'Open Sans', sans-serif">Open Sans</option></select></div><div class="setting-group"><label data-lang-key="font_size_title" title="লেখার আকার ছোট বা বড় করুন"></label><input type="range" id="font-size-slider" min="12" max="20" step="1"></div></div></details>
-        <details class="setting-accordion"><summary data-lang-key="color_title">রঙ</summary><div class="setting-content"><div class="color-input-group"><label data-lang-key="primary_color" title="বোতাম ও হাইলাইটের প্রধান রঙ"></label><input type="color" id="primary-color-picker"></div><div class="color-input-group"><label data-lang-key="body_bg_color" title="সম্পূর্ণ পেইজের পেছনের রঙ"></label><input type="color" id="body-bg-picker"></div><div class="color-input-group"><label data-lang-key="body_text_color" title="সাধারণ লেখার রঙ"></label><input type="color" id="body-text-picker"></div><div class="color-input-group"><label data-lang-key="container_bg_color" title="টেবিলের কার্ডের পেছনের রঙ"></label><input type="color" id="container-bg-picker"></div><div class="color-input-group"><label data-lang-key="container_text_color" title="কার্ডের ভেতরের লেখার রঙ"></label><input type="color" id="container-text-picker"></div><div class="color-input-group"><label data-lang-key="header_start_color" title="হেডারের গ্রেডিয়েন্টের শুরুর রঙ"></label><input type="color" id="header-start-picker"></div><div class="color-input-group"><label data-lang-key="header_end_color" title="হেডারের গ্রেডিয়েন্টের শেষের রঙ"></label><input type="color" id="header-end-picker"></div></div></details>
-        <details class="setting-accordion"><summary data-lang-key="reset_title">রিসেট</summary><div class="setting-content"><button id="reset-settings-btn" data-lang-key="reset_button" title="সকল কাস্টমাইজেশন মুছে ডিফল্ট অবস্থায় ফিরে যান">ডিফল্ট করুন</button></div></details>
+
+        <details class="setting-accordion">
+            <summary data-lang-key="font_title">ফন্ট</summary>
+            <div class="setting-content">
+                <div class="setting-group"><label data-lang-key="font_bn_title" title="আপনার পছন্দের বাংলা ফন্ট বাছাই করুন"></label><select id="font-bn-select"><option value="'Noto Sans Bengali', sans-serif">Noto Sans</option><option value="'Hind Siliguri', sans-serif">Hind Siliguri</option><option value="'Mina', sans-serif">Mina</option><option value="'Tiro Bangla', serif">Tiro Bangla</option><option value="'Galada', cursive">Galada</option></select></div>
+                <div class="setting-group"><label data-lang-key="font_en_title" title="আপনার পছন্দের ইংরেজি ফন্ট বাছাই করুন"></label><select id="font-en-select"><option value="'Poppins', sans-serif">Poppins</option><option value="'Roboto', sans-serif">Roboto</option><option value="'Lato', sans-serif">Lato</option><option value="'Montserrat', sans-serif">Montserrat</option><option value="'Open Sans', sans-serif">Open Sans</option></select></div>
+                <div class="setting-group"><label data-lang-key="font_size_title" title="লেখার আকার ছোট বা বড় করুন"></label><input type="range" id="font-size-slider" min="12" max="20" step="1"></div>
+            </div>
+        </details>
+
+        <details class="setting-accordion">
+            <summary data-lang-key="color_title">রঙ</summary>
+            <div class="setting-content">
+                <div class="color-input-group"><label data-lang-key="primary_color" title="বোতাম ও হাইলাইটের প্রধান রঙ"></label><input type="color" id="primary-color-picker"></div>
+                <div class="color-input-group"><label data-lang-key="body_bg_color" title="সম্পূর্ণ পেইজের পেছনের রঙ"></label><input type="color" id="body-bg-picker"></div>
+                <div class="color-input-group"><label data-lang-key="body_text_color" title="সাধারণ লেখার রঙ"></label><input type="color" id="body-text-picker"></div>
+                <div class="color-input-group"><label data-lang-key="container_bg_color" title="টেবিলের কার্ডের পেছনের রঙ"></label><input type="color" id="container-bg-picker"></div>
+                <div class="color-input-group"><label data-lang-key="container_text_color" title="কার্ডের ভেতরের লেখার রঙ"></label><input type="color" id="container-text-picker"></div>
+                <div class="color-input-group"><label data-lang-key="header_start_color" title="হেডারের গ্রেডিয়েন্টের শুরুর রঙ"></label><input type="color" id="header-start-picker"></div>
+                <div class="color-input-group"><label data-lang-key="header_end_color" title="হেডারের গ্রেডিয়েন্টের শেষের রঙ"></label><input type="color" id="header-end-picker"></div>
+            </div>
+        </details>
+        
+        <details class="setting-accordion">
+             <summary data-lang-key="reset_title">রিসেট</summary>
+             <div class="setting-content">
+                <button id="reset-settings-btn" data-lang-key="reset_button" title="সকল কাস্টমাইজেশন মুছে ডিফল্ট অবস্থায় ফিরে যান">ডিফল্ট করুন</button>
+             </div>
+        </details>
     </div>
 
-    <div id="calendar-modal" class="modal"><div class="modal-content"><span class="modal-close">&times;</span><div id="calendar-header"><button id="prev-month">&lt;</button><h3 id="month-year"></h3><button id="next-month">&gt;</button></div><div id="calendar-weekdays" class="calendar-grid"></div><div id="calendar-days" class="calendar-grid days-grid"></div></div></div>
+    <div id="calendar-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="calendar-header">
+                <button id="prev-month">&lt;</button>
+                <h3 id="month-year"></h3>
+                <button id="next-month">&gt;</button>
+            </div>
+            <div id="calendar-weekdays" class="calendar-grid"></div>
+            <div id="calendar-days" class="calendar-grid days-grid"></div>
+        </div>
+    </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
