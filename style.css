@@ -1,17 +1,17 @@
 /* --- ভ্যারিয়েবলস (থিমের জন্য) --- */
 :root {
-    --bg-color: #f8f9fa;
+    --bg-color: #ffffff;
     --table-bg: #ffffff;
-    --text-color: #343a40;
-    --header-text: #212529;
+    --text-color: #2c3e50;
+    --header-text: #2c3e50;
     --th-bg: #f3f0f7;
     --th-text: #6f42c1;
     --border-color: #e9ecef;
-    --subject-col-bg: #f8f5fd; /* বিষয় কলামের জন্য হালকা রঙ */
+    --subject-cell-bg: #f8f5fd; /* বিষয় কলামের জন্য নতুন রঙ */
     --menu-bg: #ffffff;
     --active-btn-bg: #6f42c1;
     --active-btn-text: #ffffff;
-    --shadow-color: rgba(0, 0, 0, 0.05);
+    --shadow-color: rgba(100, 100, 111, 0.1);
 }
 
 body.dark-mode {
@@ -22,103 +22,48 @@ body.dark-mode {
     --th-bg: #2c2a31;
     --th-text: #bb86fc;
     --border-color: #333333;
-    --subject-col-bg: #25232a; /* ডার্ক মোডে বিষয় কলামের রঙ */
+    --subject-cell-bg: #282530; /* ডার্ক মোডে বিষয় কলামের রঙ */
     --menu-bg: #2c2c2c;
     --active-btn-bg: #bb86fc;
     --active-btn-text: #121212;
 }
 
 /* --- সাধারণ স্টাইল --- */
-* {
-    margin: 0; padding: 0; box-sizing: border-box;
-}
-body {
-    font-family: 'Noto Sans Bengali', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
-    -webkit-tap-highlight-color: transparent;
-}
-.container {
-    padding: 15px;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans Bengali', 'Roboto', sans-serif; background-color: var(--bg-color); color: var(--text-color); transition: background-color 0.3s, color 0.3s; -webkit-tap-highlight-color: transparent; }
+.container { padding: 20px 15px; }
 
-/* --- হেডার --- */
+/* --- নতুন হেডার ডিজাইন --- */
 header {
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 25px;
 }
-.header-title h1 {
-    font-size: 1.8rem; font-weight: 700; line-height: 1.3;
-    color: var(--header-text);
-}
-.header-title h2 {
-    font-size: 0.85rem; font-weight: 400; opacity: 0.7;
-    margin-top: 8px; color: var(--header-text);
-}
-.header-bottom {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-top: 15px;
-}
-.date-display {
-    font-size: 1rem; font-weight: 500; color: var(--header-text);
-}
-.menu-btn {
-    background: none; border: none; font-size: 1.8rem;
-    cursor: pointer; color: var(--header-text);
-}
+.header-left h1 { font-size: 1.6rem; font-weight: 700; line-height: 1.3; color: var(--header-text); }
+.header-left h2 { font-size: 0.85rem; font-weight: 400; opacity: 0.7; margin-top: 5px; color: var(--header-text); max-width: 250px; }
+.header-right { display: flex; align-items: flex-start; gap: 10px; }
+.time-info { text-align: right; }
+#time-display { font-size: 1.1rem; font-weight: 600; color: var(--header-text); }
+#full-date-display { font-size: 0.8rem; opacity: 0.7; color: var(--header-text); }
+.menu-btn { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--header-text); padding: 0; margin-top: -5px; }
 
 /* --- টেবিল স্টাইল --- */
-.table-container {
-    background-color: var(--table-bg); border-radius: 12px;
-    box-shadow: 0 4px 20px var(--shadow-color); overflow: hidden;
-}
-table {
-    width: 100%; border-collapse: collapse; table-layout: fixed;
-}
-th, td {
-    padding: 14px; text-align: left;
-    border-bottom: 1px solid var(--border-color);
-    font-size: 0.95rem; vertical-align: middle;
-}
-thead tr {
-    background-color: var(--th-bg);
-}
-th {
-    font-weight: 600; color: var(--th-text);
-}
-tbody tr:last-child td {
-    border-bottom: none;
-}
-
-/* বিষয় কলামের জন্য বিশেষ স্টাইল */
-th:first-child, td:first-child {
-    background-color: var(--subject-col-bg);
-    font-weight: 500;
-}
-thead th:first-child {
-    border-top-left-radius: 12px;
-}
-tbody tr:last-child td:first-child {
-    border-bottom-left-radius: 12px;
-}
-
+.table-container { background-color: var(--table-bg); border-radius: 12px; box-shadow: 0 4px 20px var(--shadow-color); overflow: hidden; }
+table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+th, td { padding: 14px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; vertical-align: middle; }
+thead tr { background-color: var(--th-bg); }
+th { font-weight: 600; color: var(--th-text); }
+tbody tr:last-child td { border-bottom: none; }
+td:first-child { background-color: var(--subject-cell-bg); font-weight: 500; }
 td:nth-child(1) { width: 60%; }
 td:nth-child(2) { width: 40%; }
 .desktop-only { display: none; }
 
-/* --- সেটিংস মেনু --- */
-#settings-menu {
-    position: fixed; top: 0; right: -300px; width: 280px; height: 100%;
-    background-color: var(--menu-bg); box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-    z-index: 1000; transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    display: flex; flex-direction: column;
-}
+/* --- সেটিংস মেনু (অপরিবর্তিত) --- */
+#settings-menu { position: fixed; top: 0; right: -300px; width: 280px; height: 100%; background-color: var(--menu-bg); box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2); z-index: 1000; transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); display: flex; flex-direction: column; }
 #settings-menu.open { right: 0; }
-#overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5); z-index: 999;
-    opacity: 0; visibility: hidden; transition: opacity 0.4s, visibility 0.4s;
-}
+#overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999; opacity: 0; visibility: hidden; transition: opacity 0.4s, visibility 0.4s; }
 #overlay.active { opacity: 1; visibility: visible; }
 .menu-header { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid var(--border-color); }
 .menu-header h2 { font-size: 1.3rem; }
@@ -126,15 +71,9 @@ td:nth-child(2) { width: 40%; }
 .menu-content { padding: 15px; overflow-y: auto; }
 .menu-section { margin-bottom: 25px; }
 .menu-section h3 { font-size: 1rem; margin-bottom: 12px; color: var(--th-text); border-bottom: 1px solid var(--border-color); padding-bottom: 5px; }
-.menu-section button {
-    width: 100%; padding: 10px; margin-bottom: 8px; border: 1px solid var(--border-color);
-    background-color: transparent; color: var(--text-color); text-align: left;
-    border-radius: 6px; cursor: pointer; font-size: 0.95rem;
-    font-family: 'Noto Sans Bengali', sans-serif; transition: background-color 0.2s, color 0.2s;
-}
+.menu-section button { width: 100%; padding: 10px; margin-bottom: 8px; border: 1px solid var(--border-color); background-color: transparent; color: var(--text-color); text-align: left; border-radius: 6px; cursor: pointer; font-size: 0.95rem; font-family: inherit; transition: background-color 0.2s, color 0.2s; }
 .menu-section button:hover { background-color: var(--border-color); }
 .menu-section button.active { background-color: var(--active-btn-bg); color: var(--active-btn-text); font-weight: 600; border-color: var(--active-btn-bg); }
-button:disabled { opacity: 0.5; cursor: not-allowed; }
 
 /* --- রেসপন্সিভ (বড় স্ক্রিনের জন্য) --- */
 @media (min-width: 768px) {
@@ -143,5 +82,5 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
     td:nth-child(1) { width: 35%; }
     td:nth-child(2) { width: 25%; }
     td:nth-child(3) { width: 25%; }
-    td:nth-child(4) { width: 15%; text-align: center;}
+    td:nth-child(4) { width: 15%; text-align: center; }
 }
