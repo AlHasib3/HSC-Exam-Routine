@@ -84,10 +84,38 @@ body {
 
 .table-wrapper { padding: 0 1rem 1rem; overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-th, td { padding: 1rem 1.25rem; text-align: left; border-bottom: 1px solid var(--border-color); white-space: nowrap; transition: border-color var(--transition-speed); }
+th, td { 
+    padding: 1rem 1.25rem; 
+    text-align: left; 
+    border-bottom: 1px solid var(--border-color); 
+    vertical-align: middle;
+    transition: border-color var(--transition-speed); 
+}
 th { font-weight: 600; color: var(--primary-color); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
 tbody tr:hover { background-color: color-mix(in srgb, var(--primary-color) 8%, transparent); }
-.countdown { font-weight: 600; color: #E67E22; }
+
+/* New styles for the updated table structure */
+.subject-cell {
+    font-weight: 500;
+    white-space: nowrap;
+}
+.details-cell {
+    line-height: 1.5;
+    min-width: 240px;
+}
+.date-info {
+    font-weight: 500;
+}
+.time-info {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+.countdown {
+    font-weight: 600;
+    color: #E67E22;
+    margin-top: 0.35rem;
+    display: block;
+}
 .expired { color: #c0392b; font-weight: 600; }
 
 .panel { position: fixed; top: 0; right: -360px; width: 340px; height: 100%; background-color: var(--container-bg); box-shadow: -5px 0 25px rgba(0,0,0,0.15); z-index: 1001; transition: right 0.4s ease-in-out, background-color var(--transition-speed); padding: 1.5rem; overflow-y: auto; color: var(--container-text-color); }
@@ -133,5 +161,7 @@ input[type="range"] { width: 100%; }
     }
     .header-text h2 { font-size: 1.25rem; }
     .header-right { width: 100%; margin-top: 1rem; }
-    th, td { padding: 0.75rem 0.6rem; font-size: 14px; }
+    th, td { padding: 0.8rem 0.6rem; font-size: 14px; vertical-align: top;}
+    .subject-cell { white-space: normal; } /* Allow subject to wrap on small screens */
+    .details-cell { min-width: 180px; }
 }
