@@ -47,10 +47,9 @@ body {
     padding: 1rem;
     line-height: var(--line-height);
     transition: background-color var(--transition-speed), color var(--transition-speed);
-    overflow-x: hidden; /* Prevent horizontal scroll, allow vertical scroll */
+    overflow-x: hidden;
 }
 
-/* --- Prevent scrolling ONLY when the panel is open --- */
 body.settings-panel-open {
     overflow: hidden;
 }
@@ -79,7 +78,13 @@ body.settings-panel-open {
     transition: background var(--transition-speed);
 }
 .header-text h2 { margin: 0; font-size: 1.5rem; }
-.header-text p { margin: 0.3rem 0 0; opacity: 0.95; font-size: 1rem; font-weight: 500;}
+.header-text p { 
+    margin: 0.3rem 0 0; 
+    opacity: 0.95; 
+    font-size: 1rem; 
+    font-weight: 500;
+    white-space: nowrap; /* Keep subtitle on a single line */
+}
 
 .header-right { display: flex; align-items: center; gap: 1rem; }
 #live-datetime { background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 0.5rem; text-align: center; cursor: pointer; transition: background-color var(--transition-speed); }
@@ -114,15 +119,16 @@ tbody tr:hover { background-color: color-mix(in srgb, var(--primary-color) 8%, t
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--container-bg);
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box; /* Ensure padding is included in width/height */
+    background-color: var(--body-bg); /* Use body background for a seamless look */
     z-index: 1001;
     padding: 1.5rem;
     overflow-y: auto;
-    color: var(--container-text-color);
+    color: var(--body-text-color);
     transform: translateY(100%);
-    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     visibility: hidden;
 }
 
@@ -131,10 +137,29 @@ body.settings-panel-open .panel {
     visibility: visible;
 }
 
-.panel-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+.panel-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    border-bottom: 1px solid var(--border-color); 
+    padding-bottom: 1rem; 
+    margin-bottom: 1.5rem; 
+    position: sticky; /* Keep header visible on scroll */
+    top: -1.5rem; /* Adjust for padding */
+    background: var(--body-bg);
+    z-index: 2;
+}
 .panel-header h3 { margin: 0; font-size: 1.2rem; }
-.panel-close { font-size: 1.75rem; cursor: pointer; font-weight: bold; color: var(--container-text-color); }
-details.setting-accordion { margin-bottom: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.5rem; }
+.panel-close { 
+    font-size: 2rem; 
+    cursor: pointer; 
+    font-weight: normal; 
+    color: var(--body-text-color);
+    line-height: 1;
+    padding: 0.5rem;
+}
+
+details.setting-accordion { margin-bottom: 0.75rem; background: var(--container-bg); border: 1px solid var(--border-color); border-radius: 0.5rem; }
 details.setting-accordion summary { font-weight: 600; padding: 0.75rem; cursor: pointer; list-style: none; }
 details.setting-accordion summary::-webkit-details-marker { display: none; }
 .setting-content { padding: 1rem; border-top: 1px solid var(--border-color); }
@@ -166,27 +191,16 @@ input[type="range"] { width: 100%; }
 @media (max-width: 768px) {
     body { padding: 0.5rem; }
     .container-header {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        grid-template-rows: auto auto;
-        gap: 0.5rem 1rem;
-        align-items: center;
-        padding: 1rem 1.5rem;
+        padding: 1rem;
+        gap: 0.5rem;
     }
     .header-text {
-        grid-column: 1 / -1; 
-        text-align: center;
-    }
-    .header-right {
-        grid-column: 1 / -1; 
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        margin-top: 0.5rem;
+        text-align: left;
+        flex-grow: 1;
+        overflow: hidden; /* Hide overflow for single line subtitle */
     }
     .header-text h2 { font-size: 1.2rem; }
-    .header-text p { font-size: 0.9rem; }
+    .header-text p { font-size: 0.85rem; }
     th, td { padding: 0.8rem 0.6rem; font-size: 14px; vertical-align: top;}
     .subject-cell { white-space: normal; }
     .details-cell { min-width: 180px; }

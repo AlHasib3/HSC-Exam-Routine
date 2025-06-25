@@ -92,9 +92,36 @@ document.addEventListener('DOMContentLoaded', function() {
         applySettings();
     }
 
-    document.getElementById('settings-icon').addEventListener('click', () => document.body.classList.add('settings-panel-open'));
-    document.querySelector('.panel-close').addEventListener('click', () => document.body.classList.remove('settings-panel-open'));
+    // --- New Panel Logic with Hash for Back Button ---
+    const openSettings = () => {
+        if (location.hash !== '#settings') {
+            location.hash = '#settings';
+        }
+        document.body.classList.add('settings-panel-open');
+    };
+
+    const closeSettings = () => {
+        document.body.classList.remove('settings-panel-open');
+    };
+
+    document.getElementById('settings-icon').addEventListener('click', openSettings);
     
+    document.querySelector('.panel-close').addEventListener('click', () => {
+        history.back(); // This will trigger the hashchange event
+    });
+    
+    window.addEventListener('hashchange', () => {
+        if (location.hash !== '#settings') {
+            closeSettings();
+        }
+    });
+
+    // Check hash on initial load
+    if (location.hash === '#settings') {
+        openSettings();
+    }
+
+    // --- Other event listeners ---
     ['lang-bn', 'lang-en', 'theme-light', 'theme-dark', 'group-amar_routine', 'group-science', 'group-humanities', 'group-business'].forEach(id => {
         document.getElementById(id).addEventListener('click', (e) => {
             const [key, ...valueParts] = e.target.id.split('-');
