@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const dateString = new Intl.DateTimeFormat(settings.lang === 'bn' ? 'bn-BD' : 'en-GB', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }).format(examDateObj);
             
             row.innerHTML = `
-                <td class="subject-cell">${langDict[exam.subject_key] || exam.subject_key} (${exam.code})</td>
+                <td class="subject-cell subject-cell-highlight">${langDict[exam.subject_key] || exam.subject_key} (${exam.code})</td>
                 <td class="details-cell">
                     <div class="date-info">${dateString}</div>
                     <div class="time-info">${langDict['time_' + exam.time.charAt(0)]}</div>
@@ -91,8 +91,9 @@ document.addEventListener('DOMContentLoaded', function() {
         applySettings();
     }
 
-    document.getElementById('settings-icon').addEventListener('click', () => document.getElementById('settings-panel').classList.add('open'));
-    document.querySelector('.panel-close').addEventListener('click', () => document.getElementById('settings-panel').classList.remove('open'));
+    // Updated settings panel logic for new transition
+    document.getElementById('settings-icon').addEventListener('click', () => document.body.classList.add('settings-panel-open'));
+    document.querySelector('.panel-close').addEventListener('click', () => document.body.classList.remove('settings-panel-open'));
     
     ['lang-bn', 'lang-en', 'theme-light', 'theme-dark', 'group-amar_routine', 'group-science', 'group-humanities', 'group-business'].forEach(id => {
         document.getElementById(id).addEventListener('click', (e) => {
