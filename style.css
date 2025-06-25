@@ -17,7 +17,7 @@
     --font-bn: 'Noto Sans Bengali', sans-serif;
     --font-en: 'Poppins', sans-serif;
     --base-font-size: 16px;
-    --line-height: 1.7;
+    --line-height: 1.6; /* Standard line height */
     
     /* Transitions */
     --transition-speed: 0.3s;
@@ -45,7 +45,7 @@ body {
     color: var(--body-text-color);
     margin: 0;
     padding: 1rem;
-    line-height: 1.5; /* Adjusted for better single-line fitting */
+    line-height: var(--line-height);
     transition: background-color var(--transition-speed), color var(--transition-speed);
     overflow-x: hidden;
 }
@@ -66,7 +66,7 @@ body.settings-panel-open {
     transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
-/* --- Updated Header Styles --- */
+/* --- Header styles for multi-line text --- */
 .container-header {
     padding: 1rem 1.5rem;
     background: linear-gradient(135deg, var(--header-bg-start) 0%, var(--header-bg-end) 100%);
@@ -87,18 +87,17 @@ body.settings-panel-open {
     min-width: 0;
     text-align: left;
 }
-/* -- Styles for single-line, responsive text -- */
 #main-title { 
     margin: 0;
-    white-space: nowrap;
-    font-size: clamp(1rem, 4vw, 1.5rem);
+    font-size: 1.5rem; /* Standard font size */
+    /* Removed white-space: nowrap */
 }
 .header-text p { 
     margin: 0.2rem 0 0; 
     opacity: 0.95; 
     font-weight: 500;
-    white-space: nowrap;
-    font-size: clamp(0.75rem, 2.8vw, 1rem);
+    font-size: 1rem; /* Standard font size */
+    /* Removed white-space: nowrap */
 }
 .header-right { 
     display: flex; 
@@ -108,21 +107,21 @@ body.settings-panel-open {
 }
 #live-datetime { background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 0.5rem; text-align: center; cursor: pointer; transition: background-color var(--transition-speed); }
 #live-datetime:hover { background-color: rgba(255,255,255,0.2); }
-#live-clock { font-size: clamp(0.9rem, 2.5vw, 1.1rem); white-space: nowrap; }
-#live-date { font-size: clamp(0.65rem, 2vw, 0.75rem); white-space: nowrap; }
+#live-clock { font-size: 1.1rem; }
+#live-date { font-size: 0.75rem; }
 
-/* -- Styles for single-line, responsive info text -- */
+/* -- Info Text allowing wrap -- */
 .department-info-text {
     text-align: center;
     padding: 1rem 1rem 0.5rem;
     font-weight: 500;
     color: var(--primary-color);
-    white-space: nowrap;
-    font-size: clamp(0.8rem, 2.5vw, 1em);
+    font-size: 1em;
+    /* Removed white-space: nowrap */
 }
 
 .table-wrapper { padding: 0 1rem 1rem; overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; } /* Reduced margin-top */
+table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
 th, td { 
     padding: 1rem 1.25rem; 
     text-align: left; 
@@ -143,20 +142,7 @@ tbody tr:hover { background-color: color-mix(in srgb, var(--primary-color) 8%, t
 
 /* --- Full-Screen Panel Styles --- */
 .panel {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    background-color: var(--body-bg);
-    z-index: 1001;
-    padding: 1.5rem;
-    overflow-y: auto;
-    color: var(--body-text-color);
-    transform: translateY(100%);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    visibility: hidden;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; box-sizing: border-box; background-color: var(--body-bg); z-index: 1001; padding: 1.5rem; overflow-y: auto; color: var(--body-text-color); transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); visibility: hidden;
 }
 body.settings-panel-open .panel { transform: translateY(0); visibility: visible; }
 .panel-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1.5rem; position: sticky; top: -1.5rem; background: var(--body-bg); z-index: 2; }
@@ -190,9 +176,16 @@ input[type="range"] { width: 100%; }
 .current-day { background-color: var(--primary-color); color: #fff; }
 .modal-close { position: absolute; top: 10px; right: 15px; font-size: 1.75rem; cursor: pointer; color: var(--container-text-color); }
 
+/* Responsive Fixes for Mobile */
 @media (max-width: 768px) {
     body { padding: 0.5rem; }
     .container-header { padding: 0.75rem 1rem; }
+    #main-title { font-size: 1.2rem; }
+    .header-text p { font-size: 0.85rem; }
+    #live-datetime { padding: 0.4rem 0.8rem; }
+    #live-clock { font-size: 1rem; }
+    #live-date { font-size: 0.7rem; }
+    .department-info-text { font-size: 0.9em; padding: 0.75rem 1rem 0.25rem; }
     th, td { padding: 0.8rem 0.6rem; font-size: 14px; vertical-align: top;}
     .subject-cell { white-space: normal; }
     .details-cell { min-width: 180px; }
