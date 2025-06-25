@@ -45,7 +45,7 @@ body {
     color: var(--body-text-color);
     margin: 0;
     padding: 1rem;
-    line-height: var(--line-height);
+    line-height: 1.5; /* Adjusted for better single-line fitting */
     transition: background-color var(--transition-speed), color var(--transition-speed);
     overflow-x: hidden;
 }
@@ -80,22 +80,25 @@ body.settings-panel-open {
     font-size: 1.75rem; 
     cursor: pointer; 
     padding: 0.25rem;
-    flex-shrink: 0; /* Prevent icon from shrinking */
+    flex-shrink: 0;
 }
 .header-text {
-    flex-grow: 1; /* Take up available space */
-    min-width: 0; /* Allow text to be truncated */
+    flex-grow: 1;
+    min-width: 0;
     text-align: left;
 }
-.header-text h2 { margin: 0; font-size: 1.5rem; }
+/* -- Styles for single-line, responsive text -- */
+#main-title { 
+    margin: 0;
+    white-space: nowrap;
+    font-size: clamp(1rem, 4vw, 1.5rem);
+}
 .header-text p { 
     margin: 0.2rem 0 0; 
     opacity: 0.95; 
-    font-size: 1rem; 
     font-weight: 500;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: clamp(0.75rem, 2.8vw, 1rem);
 }
 .header-right { 
     display: flex; 
@@ -105,20 +108,21 @@ body.settings-panel-open {
 }
 #live-datetime { background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 0.5rem; text-align: center; cursor: pointer; transition: background-color var(--transition-speed); }
 #live-datetime:hover { background-color: rgba(255,255,255,0.2); }
-#live-clock { font-size: 1.1rem; font-weight: 600; }
-#live-date { font-size: 0.75rem; }
+#live-clock { font-size: clamp(0.9rem, 2.5vw, 1.1rem); white-space: nowrap; }
+#live-date { font-size: clamp(0.65rem, 2vw, 0.75rem); white-space: nowrap; }
 
-/* --- New Info Text Styles --- */
+/* -- Styles for single-line, responsive info text -- */
 .department-info-text {
     text-align: center;
     padding: 1rem 1rem 0.5rem;
     font-weight: 500;
-    font-size: 1em; /* Matches setting-group label */
     color: var(--primary-color);
+    white-space: nowrap;
+    font-size: clamp(0.8rem, 2.5vw, 1em);
 }
 
 .table-wrapper { padding: 0 1rem 1rem; overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; } /* Reduced margin-top */
 th, td { 
     padding: 1rem 1.25rem; 
     text-align: left; 
@@ -137,7 +141,7 @@ tbody tr:hover { background-color: color-mix(in srgb, var(--primary-color) 8%, t
 .expired { color: #c0392b; font-weight: 600; }
 .subject-cell-highlight { background-color: color-mix(in srgb, var(--primary-color) 6%, transparent); }
 
-/* --- Full-Screen Panel Styles & Transition --- */
+/* --- Full-Screen Panel Styles --- */
 .panel {
     position: fixed;
     top: 0;
@@ -154,40 +158,16 @@ tbody tr:hover { background-color: color-mix(in srgb, var(--primary-color) 8%, t
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     visibility: hidden;
 }
-
-body.settings-panel-open .panel {
-    transform: translateY(0);
-    visibility: visible;
-}
-
-.panel-header { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    border-bottom: 1px solid var(--border-color); 
-    padding-bottom: 1rem; 
-    margin-bottom: 1.5rem; 
-    position: sticky;
-    top: -1.5rem;
-    background: var(--body-bg);
-    z-index: 2;
-}
+body.settings-panel-open .panel { transform: translateY(0); visibility: visible; }
+.panel-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1.5rem; position: sticky; top: -1.5rem; background: var(--body-bg); z-index: 2; }
 .panel-header h3 { margin: 0; font-size: 1.2rem; }
-.panel-close { 
-    font-size: 2rem; 
-    cursor: pointer; 
-    font-weight: normal; 
-    color: var(--body-text-color);
-    line-height: 1;
-    padding: 0.5rem;
-}
-
+.panel-close { font-size: 2rem; cursor: pointer; font-weight: normal; color: var(--body-text-color); line-height: 1; padding: 0.5rem; }
 details.setting-accordion { margin-bottom: 0.75rem; background: var(--container-bg); border: 1px solid var(--border-color); border-radius: 0.5rem; }
 details.setting-accordion summary { font-weight: 600; padding: 0.75rem; cursor: pointer; list-style: none; }
 details.setting-accordion summary::-webkit-details-marker { display: none; }
 .setting-content { padding: 1rem; border-top: 1px solid var(--border-color); }
 .setting-group { margin-bottom: 1.25rem; }
-.setting-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 1em;}
+.setting-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 1em; }
 .setting-group select, .setting-group .btn-group button { width: 100%; padding: 0.6rem; border: 1px solid var(--border-color); background-color: var(--body-bg); color: var(--body-text-color); border-radius: 0.25rem; cursor: pointer; }
 .btn-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .btn-group button { flex-grow: 1; }
@@ -210,15 +190,9 @@ input[type="range"] { width: 100%; }
 .current-day { background-color: var(--primary-color); color: #fff; }
 .modal-close { position: absolute; top: 10px; right: 15px; font-size: 1.75rem; cursor: pointer; color: var(--container-text-color); }
 
-/* Responsive Fixes for Mobile */
 @media (max-width: 768px) {
     body { padding: 0.5rem; }
     .container-header { padding: 0.75rem 1rem; }
-    .header-text h2 { font-size: 1.1rem; }
-    .header-text p { font-size: 0.8rem; }
-    #live-datetime { padding: 0.4rem 0.8rem; }
-    #live-clock { font-size: 1rem; }
-    .department-info-text { font-size: 0.9em; padding: 0.75rem 1rem 0.25rem; }
     th, td { padding: 0.8rem 0.6rem; font-size: 14px; vertical-align: top;}
     .subject-cell { white-space: normal; }
     .details-cell { min-width: 180px; }
