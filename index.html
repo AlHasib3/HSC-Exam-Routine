@@ -3,85 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#f8f9fa"> <!-- ডিফল্ট লাইট থিম কালার -->
-    <title>এইচএসসি ২০২৫ রুটিন</title>
+    <title>এইচএসসি ২০২৫ পরীক্ষার সময়সূচী</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <!-- নতুন হেডার ডিজাইন -->
-        <header>
-            <div class="header-left">
-                <h1 id="app-title"></h1>
-                <h2 id="app-subtitle"></h2>
+
+    <div class="schedule-container">
+        <div class="container-header">
+            <div class="header-text">
+                <h2 id="main-title"></h2>
+                <p data-lang-key="sub_title"></p>
             </div>
             <div class="header-right">
-                <div class="time-info">
-                    <div id="time-display"></div>
-                    <div id="full-date-display"></div>
+                <div id="live-datetime" title="ক্যালেন্ডার খুলুন">
+                    <div id="live-clock"></div>
+                    <div id="live-date"></div>
                 </div>
-                <button id="menu-toggle" class="menu-btn">☰</button>
+                <div id="settings-icon" title="সেটিংস খুলুন">☰</div>
             </div>
-        </header>
-
-        <!-- রুটিন টেবিল -->
-        <main>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th data-i18n="subjectHeader">বিষয়</th>
-                            <th data-i18n="dateHeader">পরীক্ষার তারিখ</th>
-                            <th class="desktop-only" data-i18n="countdownHeader">বাকি সময়</th>
-                            <th class="desktop-only" data-i18n="codeHeader">বিষয় কোড</th>
-                        </tr>
-                    </thead>
-                    <tbody id="routine-body"></tbody>
-                </table>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th data-lang-key="col_subject"></th>
+                        <th data-lang-key="col_code"></th>
+                        <th data-lang-key="col_date"></th>
+                        <th data-lang-key="col_time"></th>
+                        <th data-lang-key="col_countdown"></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div id="settings-panel" class="panel">
+        <div class="panel-header">
+            <h3 data-lang-key="settings_title"></h3>
+            <span class="panel-close">×</span>
+        </div>
+        
+        <details class="setting-accordion" open>
+            <summary data-lang-key="appearance_title">সাধারণ</summary>
+            <div class="setting-content">
+                <div class="setting-group">
+                    <label data-lang-key="dept_select_title" title="আপনার বিভাগ নির্বাচন করুন"></label>
+                    <div class="btn-group">
+                        <button id="group-amar_routine" data-lang-key="group_amar_routine">আমার রুটিন</button>
+                        <button id="group-science" data-lang-key="group_science">বিজ্ঞান</button>
+                        <button id="group-humanities" data-lang-key="group_humanities">মানবিক</button>
+                        <button id="group-business" data-lang-key="group_business">ব্যবসায়</button>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <label data-lang-key="lang_title" title="ওয়েবসাইটের ভাষা পরিবর্তন করুন"></label>
+                    <div class="btn-group">
+                        <button id="lang-bn" data-lang-key="lang_bn">বাংলা</button>
+                        <button id="lang-en" data-lang-key="lang_en">English</button>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <label data-lang-key="theme_title" title="ওয়েবসাইটের জন্য লাইট বা ডার্ক মোড বাছাই করুন"></label>
+                    <div class="btn-group">
+                        <button id="theme-light" data-lang-key="theme_light">লাইট</button>
+                        <button id="theme-dark" data-lang-key="theme_dark">ডার্ক</button>
+                    </div>
+                </div>
             </div>
-        </main>
+        </details>
+        <details class="setting-accordion"><summary data-lang-key="font_title">ফন্ট</summary><div class="setting-content"><div class="setting-group"><label data-lang-key="font_bn_title" title="আপনার পছন্দের বাংলা ফন্ট বাছাই করুন"></label><select id="font-bn-select"><option value="'Noto Sans Bengali', sans-serif">Noto Sans</option><option value="'Hind Siliguri', sans-serif">Hind Siliguri</option><option value="'Mina', sans-serif">Mina</option><option value="'Tiro Bangla', serif">Tiro Bangla</option><option value="'Galada', cursive">Galada</option></select></div><div class="setting-group"><label data-lang-key="font_en_title" title="আপনার পছন্দের ইংরেজি ফন্ট বাছাই করুন"></label><select id="font-en-select"><option value="'Poppins', sans-serif">Poppins</option><option value="'Roboto', sans-serif">Roboto</option><option value="'Lato', sans-serif">Lato</option><option value="'Montserrat', sans-serif">Montserrat</option><option value="'Open Sans', sans-serif">Open Sans</option></select></div><div class="setting-group"><label data-lang-key="font_size_title" title="লেখার আকার ছোট বা বড় করুন"></label><input type="range" id="font-size-slider" min="12" max="20" step="1"></div></div></details>
+        <details class="setting-accordion"><summary data-lang-key="color_title">রঙ</summary><div class="setting-content"><div class="color-input-group"><label data-lang-key="primary_color" title="বোতাম ও হাইলাইটের প্রধান রঙ"></label><input type="color" id="primary-color-picker"></div><div class="color-input-group"><label data-lang-key="body_bg_color" title="সম্পূর্ণ পেইজের পেছনের রঙ"></label><input type="color" id="body-bg-picker"></div><div class="color-input-group"><label data-lang-key="body_text_color" title="সাধারণ লেখার রঙ"></label><input type="color" id="body-text-picker"></div><div class="color-input-group"><label data-lang-key="container_bg_color" title="টেবিলের কার্ডের পেছনের রঙ"></label><input type="color" id="container-bg-picker"></div><div class="color-input-group"><label data-lang-key="container_text_color" title="কার্ডের ভেতরের লেখার রঙ"></label><input type="color" id="container-text-picker"></div><div class="color-input-group"><label data-lang-key="header_start_color" title="হেডারের গ্রেডিয়েন্টের শুরুর রঙ"></label><input type="color" id="header-start-picker"></div><div class="color-input-group"><label data-lang-key="header_end_color" title="হেডারের গ্রেডিয়েন্টের শেষের রঙ"></label><input type="color" id="header-end-picker"></div></div></details>
+        <details class="setting-accordion"><summary data-lang-key="reset_title">রিসেট</summary><div class="setting-content"><button id="reset-settings-btn" data-lang-key="reset_button" title="সকল কাস্টমাইজেশন মুছে ডিফল্ট অবস্থায় ফিরে যান">ডিফল্ট করুন</button></div></details>
     </div>
 
-    <!-- সেটিংস মেনু (সাইডবার) -->
-    <aside id="settings-menu">
-        <div class="menu-header">
-            <h2 data-i18n="settings">সেটিংস</h2>
-            <button id="menu-close" class="menu-btn">×</button>
-        </div>
-        <div class="menu-content">
-            <!-- মেনুর অপশনগুলো অপরিবর্তিত -->
-             <div class="menu-section">
-                <h3 data-i18n="general">সাধারণ</h3>
-                <button class="filter-btn active" data-filter="my_routine" data-i18n="myRoutine">আমার রুটিন</button>
-            </div>
-            <div class="menu-section">
-                <h3 data-i18n="selectDept">বিভাগ নির্বাচন</h3>
-                <button class="filter-btn" data-filter="all" data-i18n="allDepts">সকল বিভাগ</button>
-                <button class="filter-btn" data-filter="science" data-i18n="scienceDept">বিজ্ঞান বিভাগ</button>
-                <button class="filter-btn" data-filter="humanities" data-i18n="humanitiesDept">মানবিক</button>
-                <button class="filter-btn" data-filter="business" data-i18n="businessDept">ব্যবসায় শিক্ষা</button>
-            </div>
-            <div class="menu-section">
-                <h3 data-i18n="language">ভাষা</h3>
-                <button class="lang-btn" data-lang="bn">বাংলা</button>
-                <button class="lang-btn" data-lang="en">English</button>
-            </div>
-            <div class="menu-section">
-                <h3 data-i18n="themeMode">থিম মোড</h3>
-                <button id="light-mode-btn" class="theme-btn" data-i18n="light">লাইট</button>
-                <button id="dark-mode-btn" class="theme-btn" data-i18n="dark">ডার্ক</button>
-            </div>
-            <div class="menu-section">
-                <h3 data-i18n="reset">রিসেট</h3>
-                <button id="reset-btn" data-i18n="resetToDefault">ডিফল্ট করুন</button>
-            </div>
-        </div>
-    </aside>
-
-    <div id="overlay"></div>
+    <div id="calendar-modal" class="modal"><div class="modal-content"><span class="modal-close">×</span><div id="calendar-header"><button id="prev-month"><</button><h3 id="month-year"></h3><button id="next-month">></button></div><div id="calendar-weekdays" class="calendar-grid"></div><div id="calendar-days" class="calendar-grid days-grid"></div></div></div>
 
     <script src="script.js"></script>
 </body>

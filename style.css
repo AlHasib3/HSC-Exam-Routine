@@ -1,86 +1,137 @@
-/* --- ভ্যারিয়েবলস (থিমের জন্য) --- */
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600&family=Mina:wght@400;700&family=Galada&family=Tiro+Bangla&family=Poppins:wght@400;500;600&family=Roboto:wght@400;500;700&family=Lato&family=Montserrat&family=Open+Sans&display=swap');
+
 :root {
-    --bg-color: #ffffff;
-    --table-bg: #ffffff;
-    --text-color: #2c3e50;
-    --header-text: #2c3e50;
-    --th-bg: #f3f0f7;
-    --th-text: #6f42c1;
-    --border-color: #e9ecef;
-    --subject-cell-bg: #f8f5fd; /* বিষয় কলামের জন্য নতুন রঙ */
-    --menu-bg: #ffffff;
-    --active-btn-bg: #6f42c1;
-    --active-btn-text: #ffffff;
-    --shadow-color: rgba(100, 100, 111, 0.1);
+    /* Color Scheme */
+    --primary-color: #007bff;
+    --header-bg-start: #007bff;
+    --header-bg-end: #0056b3;
+    --body-bg: #f8f9fa;
+    --body-text-color: #212529;
+    --container-bg: #ffffff;
+    --container-text-color: #343a40;
+    --border-color: #dee2e6;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    
+    /* Typography */
+    --font-bn: 'Noto Sans Bengali', sans-serif;
+    --font-en: 'Poppins', sans-serif;
+    --base-font-size: 16px;
+    --line-height: 1.7;
+    
+    /* Transitions */
+    --transition-speed: 0.3s;
 }
 
-body.dark-mode {
-    --bg-color: #121212;
-    --table-bg: #1e1e1e;
-    --text-color: #e0e0e0;
-    --header-text: #f1f1f1;
-    --th-bg: #2c2a31;
-    --th-text: #bb86fc;
-    --border-color: #333333;
-    --subject-cell-bg: #282530; /* ডার্ক মোডে বিষয় কলামের রঙ */
-    --menu-bg: #2c2c2c;
-    --active-btn-bg: #bb86fc;
-    --active-btn-text: #121212;
+.dark-mode {
+    --primary-color: #0d6efd;
+    --header-bg-start: #0d6efd;
+    --header-bg-end: #0a58ca;
+    --body-bg: #121212;
+    --body-text-color: #e0e0e0;
+    --container-bg: #1e1e1e;
+    --container-text-color: #cfcfcf;
+    --border-color: #3a3a3a;
+    --shadow-color: rgba(0, 0, 0, 0.25);
 }
 
-/* --- সাধারণ স্টাইল --- */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Noto Sans Bengali', 'Roboto', sans-serif; background-color: var(--bg-color); color: var(--text-color); transition: background-color 0.3s, color 0.3s; -webkit-tap-highlight-color: transparent; }
-.container { padding: 20px 15px; }
+html {
+    font-size: var(--base-font-size);
+}
 
-/* --- নতুন হেডার ডিজাইন --- */
-header {
+body {
+    font-family: var(--font-bn), var(--font-en), sans-serif;
+    background-color: var(--body-bg);
+    color: var(--body-text-color);
+    margin: 0;
+    padding: 1rem;
+    line-height: var(--line-height);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.schedule-container {
+    background-color: var(--container-bg);
+    color: var(--container-text-color);
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    border-radius: 1rem;
+    box-shadow: 0 8px 25px var(--shadow-color);
+    overflow: hidden;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.container-header {
+    padding: 1.5rem 2rem;
+    background: linear-gradient(135deg, var(--header-bg-start) 0%, var(--header-bg-end) 100%);
+    color: #fff;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 25px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    transition: background var(--transition-speed);
 }
-.header-left h1 { font-size: 1.6rem; font-weight: 700; line-height: 1.3; color: var(--header-text); }
-.header-left h2 { font-size: 0.85rem; font-weight: 400; opacity: 0.7; margin-top: 5px; color: var(--header-text); max-width: 250px; }
-.header-right { display: flex; align-items: flex-start; gap: 10px; }
-.time-info { text-align: right; }
-#time-display { font-size: 1.1rem; font-weight: 600; color: var(--header-text); }
-#full-date-display { font-size: 0.8rem; opacity: 0.7; color: var(--header-text); }
-.menu-btn { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--header-text); padding: 0; margin-top: -5px; }
+.header-text h2 { margin: 0; font-size: 1.5rem; }
+.header-text p { margin: 0.25rem 0 0; opacity: 0.9; font-size: 0.9rem; }
+.header-right { display: flex; align-items: center; gap: 1rem; }
+#live-datetime { background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 0.5rem; text-align: center; cursor: pointer; transition: background-color var(--transition-speed); }
+#live-datetime:hover { background-color: rgba(255,255,255,0.2); }
+#live-clock { font-size: 1.1rem; font-weight: 600; }
+#live-date { font-size: 0.75rem; }
+#settings-icon { font-size: 1.75rem; cursor: pointer; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; }
+#settings-icon:hover { background-color: rgba(255,255,255,0.1); }
 
-/* --- টেবিল স্টাইল --- */
-.table-container { background-color: var(--table-bg); border-radius: 12px; box-shadow: 0 4px 20px var(--shadow-color); overflow: hidden; }
-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-th, td { padding: 14px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; vertical-align: middle; }
-thead tr { background-color: var(--th-bg); }
-th { font-weight: 600; color: var(--th-text); }
-tbody tr:last-child td { border-bottom: none; }
-td:first-child { background-color: var(--subject-cell-bg); font-weight: 500; }
-td:nth-child(1) { width: 60%; }
-td:nth-child(2) { width: 40%; }
-.desktop-only { display: none; }
+.table-wrapper { padding: 0 1rem 1rem; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+th, td { padding: 1rem 1.25rem; text-align: left; border-bottom: 1px solid var(--border-color); white-space: nowrap; transition: border-color var(--transition-speed); }
+th { font-weight: 600; color: var(--primary-color); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+tbody tr:hover { background-color: color-mix(in srgb, var(--primary-color) 8%, transparent); }
+.countdown { font-weight: 600; color: #E67E22; }
+.expired { color: #c0392b; font-weight: 600; }
 
-/* --- সেটিংস মেনু (অপরিবর্তিত) --- */
-#settings-menu { position: fixed; top: 0; right: -300px; width: 280px; height: 100%; background-color: var(--menu-bg); box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2); z-index: 1000; transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); display: flex; flex-direction: column; }
-#settings-menu.open { right: 0; }
-#overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999; opacity: 0; visibility: hidden; transition: opacity 0.4s, visibility 0.4s; }
-#overlay.active { opacity: 1; visibility: visible; }
-.menu-header { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid var(--border-color); }
-.menu-header h2 { font-size: 1.3rem; }
-#menu-close { font-size: 2rem; }
-.menu-content { padding: 15px; overflow-y: auto; }
-.menu-section { margin-bottom: 25px; }
-.menu-section h3 { font-size: 1rem; margin-bottom: 12px; color: var(--th-text); border-bottom: 1px solid var(--border-color); padding-bottom: 5px; }
-.menu-section button { width: 100%; padding: 10px; margin-bottom: 8px; border: 1px solid var(--border-color); background-color: transparent; color: var(--text-color); text-align: left; border-radius: 6px; cursor: pointer; font-size: 0.95rem; font-family: inherit; transition: background-color 0.2s, color 0.2s; }
-.menu-section button:hover { background-color: var(--border-color); }
-.menu-section button.active { background-color: var(--active-btn-bg); color: var(--active-btn-text); font-weight: 600; border-color: var(--active-btn-bg); }
+.panel { position: fixed; top: 0; right: -360px; width: 340px; height: 100%; background-color: var(--container-bg); box-shadow: -5px 0 25px rgba(0,0,0,0.15); z-index: 1001; transition: right 0.4s ease-in-out, background-color var(--transition-speed); padding: 1.5rem; overflow-y: auto; color: var(--container-text-color); }
+.panel.open { right: 0; }
+.panel-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+.panel-header h3 { margin: 0; font-size: 1.2rem; }
+.panel-close { font-size: 1.75rem; cursor: pointer; font-weight: bold; color: var(--container-text-color); }
+details.setting-accordion { margin-bottom: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.5rem; }
+details.setting-accordion summary { font-weight: 600; padding: 0.75rem; cursor: pointer; list-style: none; }
+details.setting-accordion summary::-webkit-details-marker { display: none; }
+.setting-content { padding: 1rem; border-top: 1px solid var(--border-color); }
+.setting-group { margin-bottom: 1.25rem; }
+.setting-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+.setting-group select, .setting-group .btn-group button { width: 100%; padding: 0.6rem; border: 1px solid var(--border-color); background-color: var(--body-bg); color: var(--body-text-color); border-radius: 0.25rem; cursor: pointer; }
+.btn-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.btn-group button { flex-grow: 1; }
+.btn-group button.active { background-color: var(--primary-color); color: #fff; border-color: var(--primary-color); }
+.color-input-group { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+input[type="color"] { border: 1px solid var(--border-color); width: 48px; height: 32px; background: none; cursor: pointer; padding: 2px; border-radius: 4px; }
+input[type="range"] { width: 100%; }
+#reset-settings-btn { width: 100%; padding: 0.7rem; border: 1px solid #dc3545; background-color: #dc3545; color: white; border-radius: 0.25rem; cursor: pointer; text-align: center; font-weight: bold; }
 
-/* --- রেসপন্সিভ (বড় স্ক্রিনের জন্য) --- */
-@media (min-width: 768px) {
-    .container { max-width: 900px; margin: 0 auto; }
-    .desktop-only { display: table-cell; }
-    td:nth-child(1) { width: 35%; }
-    td:nth-child(2) { width: 25%; }
-    td:nth-child(3) { width: 25%; }
-    td:nth-child(4) { width: 15%; text-align: center; }
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px); }
+.modal.open { display: flex; justify-content: center; align-items: center; }
+.modal-content { background-color: var(--container-bg); padding: 1.5rem; border-radius: 1rem; width: 90%; max-width: 380px; position: relative; animation: zoomIn 0.3s; }
+@keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+#calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+#calendar-header button { background: none; border: none; font-size: 1.75rem; cursor: pointer; color: var(--container-text-color); }
+#month-year { font-size: 1.2rem; font-weight: 600; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; text-align: center; }
+.day-name { font-weight: bold; font-size: 0.8rem; color: var(--primary-color); padding: 0.5rem 0; }
+.days-grid div { padding: 0.6rem 0; border-radius: 50%; }
+.current-day { background-color: var(--primary-color); color: #fff; }
+.modal-close { position: absolute; top: 10px; right: 15px; font-size: 1.75rem; cursor: pointer; color: var(--container-text-color); }
+
+/* Responsive Fixes for Mobile */
+@media (max-width: 768px) {
+    body { padding: 0.5rem; }
+    .container-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 1.5rem;
+    }
+    .header-text h2 { font-size: 1.25rem; }
+    .header-right { width: 100%; margin-top: 1rem; }
+    th, td { padding: 0.75rem 0.6rem; font-size: 14px; }
 }
