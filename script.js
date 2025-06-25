@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function applySettings() {
-        // Remove settings-panel-open class if it exists to prevent conflicts
         document.body.classList.remove('settings-panel-open');
         document.body.className = settings.theme === 'dark' ? 'dark-mode' : '';
         document.documentElement.lang = settings.lang;
